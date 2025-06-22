@@ -111,14 +111,14 @@ const Header: React.FC = () => {
   return (
     <header
       className={`fixed top-0 z-40 w-full transition-all duration-300 ${
-        sticky ? ' shadow-lg bg-white py-4' : 'shadow-none py-4 bg-black/40 '
+        sticky ? ' shadow-lg bg-white py-4' : 'shadow-none py-4 bg-black/80'
       }`}>
       <div>
         <div className='container mx-auto max-w-7xl px-4 flex items-center justify-between'>
           <Logo />
         <nav className='hidden lg:flex grow items-center gap-8 justify-start ml-14'>
             {headerData.map((item, index) => (
-              <HeaderLink key={index} item={item} activeSection={activeSection} />
+              <HeaderLink key={index} item={item} activeSection={activeSection} sticky={sticky}/>
             ))}
           </nav>
           <div className='flex items-center gap-4'>
@@ -154,7 +154,7 @@ const Header: React.FC = () => {
               onClick={() => {
                 setIsSignUpOpen(true)
               }}>
-              Sign Up
+              Register Now
             </button>
             {isSignUpOpen && (
               <div className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50'>

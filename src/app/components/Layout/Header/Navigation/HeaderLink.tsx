@@ -4,10 +4,10 @@ import Link from 'next/link'
 import { HeaderItem } from '../../../../types/menu'
 import { usePathname } from 'next/navigation'
 
-const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string }> = ({ item,activeSection }) => {
+const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string;sticky:boolean }> = ({ item,activeSection,sticky }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false)
   const isActive = item.href === `/#${activeSection}`
-  console.log(item.href, activeSection, isActive)
+  console.log({sticky})
 
   const path = usePathname()
   const handleMouseEnter = () => {
@@ -27,7 +27,7 @@ const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string }> = ({ item
       <Link
         href={item.href}
         className={`text-base flex font-medium hover:text-primary capitalized  ${
-          isActive ? 'text-primary ' : 'text-black'
+          isActive ? 'text-primary ' : !sticky? 'text-white': 'text-black'
         }`}>
         {item.label}
         
