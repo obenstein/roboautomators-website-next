@@ -9,7 +9,7 @@ const Banner = () => {
 
   return (
     <section id='Home' className='bg-banner-image pt-28 pb-20'>
-        <div className="absolute inset-0  z-0" />
+        <div className="absolute" />
 
       <div className='relative px-6 lg:px-8'>
         <div className='container'>
@@ -21,11 +21,14 @@ const Banner = () => {
               RoboAutomators is committed to equipping students with the essential technological skills needed to thrive in today’s rapidly evolving world. By integrating robotics, programming, Artificial Intelligence-AI, and coding into institutes and providing sessions for individuals, we provide hands-on learning experiences that foster creativity, problem-solving, and critical thinking.
 
             </p>
+            <div>
              <button
                 className='bg-primary text-white px-4 py-2 rounded-lg border  border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out'
                 >
                 Visit Us To Know More
               </button>
+              
+              </div>
             {/* <div className='backdrop-blur-md bg-white/30 border border-white/30 rounded-lg shadow-lg p-6 w-fit mx-auto'>
               <div className='flex items-center justify-center gap-8'>
                 <div className='hidden sm:block -space-x-2 overflow-hidden'>
@@ -87,7 +90,7 @@ const Banner = () => {
 
           {/* DROPDOWN BUTTONS */}
 
-          <div className='mx-auto max-w-4xl mt-12 p-6 lg:max-w-4xl lg:px-8 bg-white rounded-lg boxshadow'>
+          {/* <div className='mx-auto max-w-4xl mt-12 p-6 lg:max-w-4xl lg:px-8 bg-white rounded-lg boxshadow'>
             <div className='grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-8 xl:gap-x-8'>
               <div className='col-span-3'>
                 <Dropdownone />
@@ -103,7 +106,7 @@ const Banner = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

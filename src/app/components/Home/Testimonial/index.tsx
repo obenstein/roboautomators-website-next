@@ -57,7 +57,7 @@ const Testimonial = () => {
       <div className='container'>
         <div className='flex flex-col sm:flex-row gap-5 justify-between sm:items-center mb-6'>
           <h2 className='font-bold tracking-tight'>
-            What Our Happy <br /> Students Says
+            What Our Happy <br /> <span className='text-[#238fc4]'>Certified </span>Students Say
           </h2>
           <div>
             <button className='bg-transparent cursor-pointer hover:bg-primary text-primary font-semibold hover:text-white py-3 px-4 border border-primary hover:border-transparent rounded-sm duration-300'>

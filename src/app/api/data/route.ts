@@ -60,6 +60,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'HTML, CSS, Javascript Development',
     price: '40',
     category: 'webdevelopment',
+    curriculum: ['HTML Basics', 'CSS Flexbox/Grid', 'JavaScript DOM'],
+    classes: 12,
+    eligibility: { age: '15+', background: 'Basic computer knowledge' },
   },
   {
     course: 'Node.js',
@@ -67,6 +70,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Backend with Node.js and Express.js',
     price: '21',
     category: 'webdevelopment',
+    curriculum: ['Node.js Fundamentals', 'Express.js', 'REST APIs'],
+    classes: 10,
+    eligibility: { age: '16+', background: 'JavaScript Basics' },
   },
   {
     course: 'Database',
@@ -74,6 +80,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Learn Mongodb with Mongoose',
     price: '21',
     category: 'webdevelopment',
+    curriculum: ['MongoDB Basics', 'Mongoose Models', 'Data Relations'],
+    classes: 8,
+    eligibility: { age: '16+', background: 'Programming Basics' },
   },
   {
     course: 'React.js',
@@ -81,6 +90,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Learn React with Redux toolkit',
     price: '99',
     category: 'webdevelopment',
+    curriculum: ['JSX & Components', 'Hooks', 'Redux Toolkit'],
+    classes: 14,
+    eligibility: { age: '16+', background: 'JavaScript & HTML' },
   },
   {
     course: 'React Native',
@@ -88,6 +100,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Learn React Native with Node.js',
     price: '89',
     category: 'mobiledevelopment',
+    curriculum: ['React Native Basics', 'Navigation', 'APIs'],
+    classes: 15,
+    eligibility: { age: '17+', background: 'React.js knowledge' },
   },
   {
     course: 'Swift',
@@ -95,6 +110,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Learn Swift from Scratch',
     price: '89',
     category: 'mobiledevelopment',
+    curriculum: ['Swift Basics', 'UI Design', 'iOS APIs'],
+    classes: 10,
+    eligibility: { age: '18+' },
   },
   {
     course: 'Flutter',
@@ -102,6 +120,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Flutter App Development',
     price: '69',
     category: 'mobiledevelopment',
+    curriculum: ['Dart Basics', 'Widgets', 'Firebase Integration'],
+    classes: 12,
+    eligibility: { age: '16+', background: 'OOP Basics' },
   },
   {
     course: 'Onsen UI',
@@ -109,6 +130,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Learn Onsen Ui with HTML, CSS',
     price: '69',
     category: 'mobiledevelopment',
+    curriculum: ['UI Basics', 'Cordova Integration', 'Theming'],
+    classes: 6,
+    eligibility: { age: '15+', background: 'HTML/CSS' },
   },
   {
     course: 'TensorFlow',
@@ -116,6 +140,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Learn TensorFlow with SQL',
     price: '99',
     category: 'datascience',
+    curriculum: ['TensorFlow Intro', 'Model Building', 'SQL Integration'],
+    classes: 10,
+    eligibility: { age: '18+', background: 'Math & Python' },
   },
   {
     course: 'AWS',
@@ -123,6 +150,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'AWS Deep Learning AMI',
     price: '99',
     category: 'datascience',
+    curriculum: ['EC2 Setup', 'AMI Usage', 'Model Deployment'],
+    classes: 7,
+    eligibility: { age: '18+', background: 'Cloud basics' },
   },
   {
     course: 'Bokeh',
@@ -130,6 +160,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Learn Bokeh with Python',
     price: '99',
     category: 'datascience',
+    curriculum: ['Visualization Basics', 'Bokeh Server', 'Interactive Plots'],
+    classes: 8,
+    eligibility: { age: '17+', background: 'Python Basics' },
   },
   {
     course: 'Scikit',
@@ -137,6 +170,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Scikit with Python Development',
     price: '89',
     category: 'datascience',
+    curriculum: ['Data Preprocessing', 'Model Training', 'Evaluation'],
+    classes: 9,
+    eligibility: { age: '18+', background: 'Python & Math' },
   },
   {
     course: 'Laas',
@@ -144,6 +180,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Infra-as-a-Service',
     price: '21',
     category: 'cloudcomputing',
+    curriculum: ['IaaS Concepts', 'Infrastructure Automation'],
+    classes: 6,
+    eligibility: { age: '18+' },
   },
   {
     course: 'Iaas',
@@ -151,6 +190,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Info-as-a-Service',
     price: '29',
     category: 'cloudcomputing',
+    curriculum: ['Info Services', 'Security', 'Deployment'],
+    classes: 7,
+    eligibility: { age: '18+' },
   },
   {
     course: 'Paas',
@@ -158,6 +200,9 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Platform-as-a-Service',
     price: '99',
     category: 'cloudcomputing',
+    curriculum: ['PaaS Providers', 'App Hosting', 'DevOps Integration'],
+    classes: 9,
+    eligibility: { age: '18+' },
   },
   {
     course: 'Saas',
@@ -165,8 +210,12 @@ const CourseDetailData: CourseDetailType[] = [
     profession: 'Software-as-a-Service',
     price: '58',
     category: 'cloudcomputing',
+    curriculum: ['SaaS Architecture', 'User Management', 'Monetization'],
+    classes: 8,
+    eligibility: { age: '18+' },
   },
 ]
+
 
 const MentorData: MentorType[] = [
   {

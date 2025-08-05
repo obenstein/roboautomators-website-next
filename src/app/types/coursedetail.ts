@@ -8,4 +8,10 @@ export type CourseDetailType = {
     | 'webdevelopment'
     | 'datascience'
     | 'cloudcomputing'
+  curriculum?: string[]
+  classes?: number
+  eligibility?: {
+    age: string
+    background?: string
+  }
 }

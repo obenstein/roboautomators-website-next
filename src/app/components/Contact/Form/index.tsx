@@ -73,7 +73,7 @@ const ContactForm = () => {
     <section id='contact'>
       <div className='container'>
         <div className='relative'>
-          <h2 className='mb-9 font-bold tracking-tight'>Get in Touch</h2>
+          <h2 className='mb-9 font-bold tracking-tight'>Get in <span className='text-[#238fc4]'>Touch</span></h2>
           <form
             onSubmit={handleSubmit}
             className='flex flex-wrap w-full m-auto justify-between'>

@@ -122,13 +122,13 @@ const Header: React.FC = () => {
             ))}
           </nav>
           <div className='flex items-center gap-4'>
-            <button
+            {/* <button
               className='hidden lg:block bg-transparent text-primary border hover:bg-primary border-primary hover:text-white duration-300 px-6 py-2 rounded-lg hover:cursor-pointer'
               onClick={() => {
                 setIsSignInOpen(true)
               }}>
               Sign In
-            </button>
+            </button> */}
             {isSignInOpen && (
               <div className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50'>
                 <div
@@ -215,22 +215,22 @@ const Header: React.FC = () => {
               <MobileHeaderLink key={index} item={item} />
             ))}
             <div className='mt-4 flex flex-col gap-4 w-full'>
-              <button
+              {/* <button
                 className='bg-primary text-white px-4 py-2 rounded-lg border  border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out'
                 onClick={() => {
                   setIsSignInOpen(true)
                   setNavbarOpen(false)
                 }}>
                 Sign In
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 className='bg-primary text-white px-4 py-2 rounded-lg border  border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out'
                 onClick={() => {
                   setIsSignUpOpen(true)
                   setNavbarOpen(false)
                 }}>
                 Sign Up
-              </button>
+              </button> */}
             </div>
           </nav>
         </div>

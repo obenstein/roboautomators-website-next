@@ -30,7 +30,7 @@ const Mentor = () => {
     <section id='mentors-section'>
       <div className='container'>
         <div className='flex flex-col sm:flex-row gap-5 justify-between sm:items-center mb-12'>
-          <h2 className='font-bold tracking-tight'>Meet with our Mentors</h2>
+          <h2 className='font-bold tracking-tight'>Meet with our <span className='text-[#238fc4]'>Mentors</span></h2>
           <div>
             <button className='bg-transparent cursor-pointer hover:bg-primary text-primary font-medium hover:text-white py-3 px-4 border border-primary hover:border-transparent rounded-sm duration-300'>
               Explore 10+ our Mentor
