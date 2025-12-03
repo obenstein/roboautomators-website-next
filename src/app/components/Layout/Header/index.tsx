@@ -110,8 +110,8 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed top-0 z-40 w-full transition-all duration-300 ${
-        sticky ? ' shadow-lg bg-white py-4' : 'shadow-none py-4 bg-black/80'
+      className={`fixed top-0 z-40 w-full transition-all duration-500 ease-in-out ${
+        sticky ? 'shadow-lg bg-white/95 backdrop-blur-md py-4' : 'shadow-none py-4 bg-black/60 backdrop-blur-sm'
       }`}>
       <div>
         <div className='container mx-auto max-w-7xl px-4 flex items-center justify-between'>
@@ -150,7 +150,7 @@ const Header: React.FC = () => {
               </div>
             )}
             <button
-              className='hidden lg:block bg-primary text-white text-base font-medium hover:bg-transparent duration-300 hover:text-primary border border-primary px-6 py-2 rounded-lg hover:cursor-pointer'
+              className='hidden lg:block bg-primary text-white text-base font-medium hover:bg-transparent hover:scale-105 duration-300 hover:text-primary border border-primary px-6 py-2 rounded-lg hover:cursor-pointer transition-all shadow-md hover:shadow-glow'
               onClick={() => {
                 setIsSignUpOpen(true)
               }}>
@@ -191,7 +191,7 @@ const Header: React.FC = () => {
         )}
         <div
           ref={mobileMenuRef}
-          className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white shadow-lg transform transition-transform duration-300 max-w-xs ${
+          className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white/95 backdrop-blur-md shadow-2xl transform transition-all duration-500 ease-in-out max-w-xs ${
             navbarOpen ? 'translate-x-0' : 'translate-x-full'
           } z-50`}>
           <div className='flex items-center justify-between p-4'>

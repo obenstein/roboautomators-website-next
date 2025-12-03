@@ -8,6 +8,7 @@ import Newsletter from "@/app/components/Home/Newsletter";
 import { Metadata } from "next";
 import ContactForm from "./components/Contact/Form";
 import PartnerCompanies from "./components/Home/Partners";
+import Highlights from "./components/Home/Highlights";
 
 export const metadata: Metadata = {
   title: "Roboautomators",
@@ -18,12 +19,13 @@ export default function Home() {
     <main>
       <Hero />
       <NamesList />
+      <Highlights />
       <PartnerCompanies />
       <Mentor />
       <Companies />
       <Testimonial />
       <ContactForm />
-      <Newsletter />
+      {/* <Newsletter /> */}
     </main>
   );
 }

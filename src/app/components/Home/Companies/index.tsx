@@ -66,8 +66,8 @@ const Companies = () => {
   return (
     <section>
       <div className='container mx-auto max-w-7xl px-4'>
-        <h2 className='text-lg mb-10 text-black/40 text-center'>
-          Trusted by companies of all sizes
+        <h2 className='font-bold tracking-tight mb-6 text-center'>
+          Our <span className='text-[#238fc4]'>Clients</span>
         </h2>
         <div>
           <Slider {...settings}>

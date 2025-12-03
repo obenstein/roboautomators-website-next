@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { useEffect, useState } from 'react'
 import { FooterLinkType } from '@/app/types/footerlinks'
+import { motion } from 'framer-motion'
 
 const Footer = () => {
   const [footerlink, SetFooterlink] = useState<FooterLinkType[]>([])
@@ -25,7 +26,13 @@ const Footer = () => {
 
   return (
     <div className='bg-primary' id='first-section'>
-      <div className='container pt-60 pb-10'>
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className='container pt-60 pb-10'
+      >
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-16 xl:gap-8'>
           <div className='col-span-4 flex flex-col gap-5'>
             <div>
@@ -41,38 +48,46 @@ const Footer = () => {
               Level up your skills, and get dream <br /> job with passion.{' '}
             </p>
             <div className='flex gap-4'>
-              <Link
-                href='/'
-                className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300'>
-                <Icon
-                  icon='tabler:brand-instagram'
-                  className='text-2xl inline-block'
-                />
-              </Link>
-              <Link
-                href='/'
-                className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300'>
-                <Icon
-                  icon='tabler:brand-dribbble'
-                  className='text-2xl inline-block'
-                />
-              </Link>
-              <Link
-                href='/'
-                className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300'>
-                <Icon
-                  icon='tabler:brand-twitter-filled'
-                  className='text-2xl inline-block'
-                />
-              </Link>
-              <Link
-                href='/'
-                className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300'>
-                <Icon
-                  icon='tabler:brand-youtube-filled'
-                  className='text-2xl inline-block'
-                />
-              </Link>
+              <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href='/'
+                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
+                  <Icon
+                    icon='tabler:brand-instagram'
+                    className='text-2xl inline-block'
+                  />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href='/'
+                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
+                  <Icon
+                    icon='tabler:brand-dribbble'
+                    className='text-2xl inline-block'
+                  />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href='/'
+                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
+                  <Icon
+                    icon='tabler:brand-twitter-filled'
+                    className='text-2xl inline-block'
+                  />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href='/'
+                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
+                  <Icon
+                    icon='tabler:brand-youtube-filled'
+                    className='text-2xl inline-block'
+                  />
+                </Link>
+              </motion.div>
             </div>
           </div>
 
@@ -126,7 +141,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <div className='py-3'>
         <h3 className='text-center text-white/60'>
           @2025 - All Rights Reserved by{' '}

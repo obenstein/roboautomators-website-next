@@ -1,116 +1,93 @@
-import Link from 'next/link'
-import Dropdownone from './Dropdownone'
-import Dropdowntwo from './Dropdowntwo'
-import Image from 'next/image'
+"use client";
+import Link from "next/link";
+import Dropdownone from "./Dropdownone";
+import Dropdowntwo from "./Dropdowntwo";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Banner = () => {
-
-    
-
   return (
-    <section id='Home' className='bg-banner-image pt-28 pb-20'>
-        <div className="absolute" />
+    <section
+      id="Home"
+      className="relative bg-banner-image pt-28 pb-20 overflow-hidden"
+    >
+      {/* Animated gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-animated opacity-90" />
 
-      <div className='relative px-6 lg:px-8'>
-        <div className='container'>
-          <div className='flex flex-col gap-4 text-center'>
-            <h1 className='leading-tight font-bold text-white tracking-tight max-w-4xl mx-auto'>
+      {/* Animated geometric shapes */}
+      <motion.div
+        className="absolute top-20 left-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.5, 0.3],
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-40 h-40 bg-primary-light/20 rounded-full blur-3xl"
+        animate={{
+          scale: [1, 1.3, 1],
+          opacity: [0.3, 0.6, 0.3],
+        }}
+        transition={{
+          duration: 5,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 1,
+        }}
+      />
+
+      <div className="relative px-6 lg:px-8">
+        <div className="container">
+          <div className="flex flex-col gap-4 text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="leading-tight font-bold text-white tracking-tight max-w-4xl mx-auto"
+            >
               EMPOWERING THE FUTURE BUILDERS
-            </h1>
-            <p className='text-lg leading-8 text-white'>
-              RoboAutomators is committed to equipping students with the essential technological skills needed to thrive in today’s rapidly evolving world. By integrating robotics, programming, Artificial Intelligence-AI, and coding into institutes and providing sessions for individuals, we provide hands-on learning experiences that foster creativity, problem-solving, and critical thinking.
+            </motion.h1>
 
-            </p>
-            <div>
-             <button
-                className='bg-primary text-white px-4 py-2 rounded-lg border  border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out'
-                >
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+              className="text-lg leading-8 text-white max-w-4xl mx-auto"
+            >
+              RoboAutomators is committed to equipping students with the
+              essential technological skills needed to thrive in today's rapidly
+              evolving world. By integrating robotics, programming, Artificial
+              Intelligence-AI, and coding into institutes and providing sessions
+              for individuals, we provide hands-on learning experiences that
+              foster creativity, problem-solving, and critical thinking.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+            >
+              <motion.button
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 0 30px rgba(35, 143, 196, 0.5)",
+                }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-primary text-white px-8 py-3 rounded-lg border border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition-all duration-300 ease-in-out font-semibold text-lg shadow-lg"
+              >
                 Visit Us To Know More
-              </button>
-              
-              </div>
-            {/* <div className='backdrop-blur-md bg-white/30 border border-white/30 rounded-lg shadow-lg p-6 w-fit mx-auto'>
-              <div className='flex items-center justify-center gap-8'>
-                <div className='hidden sm:block -space-x-2 overflow-hidden'>
-                  <Image
-                    className='inline-block h-12 w-12 rounded-full ring-2 ring-white'
-                    src='https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                    alt='img1'
-                    width={12}
-                    height={12}
-                  />
-
-                  <Image
-                    className='inline-block h-12 w-12 rounded-full ring-2 ring-white'
-                    src='https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                    alt='img2'
-                    width={12}
-                    height={12}
-                  />
-                  <Image
-                    className='inline-block h-12 w-12 rounded-full ring-2 ring-white'
-                    src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80'
-                    alt='img3'
-                    width={12}
-                    height={12}
-                  />
-                  <Image
-                    className='inline-block h-12 w-12 rounded-full ring-2 ring-white'
-                    src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                    alt='img4'
-                    width={12}
-                    height={12}
-                  />
-                  <Image
-                    className='inline-block h-12 w-12 rounded-full ring-2 ring-white'
-                    src='https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
-                    alt='img5'
-                    width={12}
-                    height={12}
-                  />
-                </div>
-                <div>
-                  <div className='flex justify-center sm:justify-start'>
-                    <h3 className='text-2xl font-semibold mr-2'>4.6</h3>
-                    <Image
-                      src={'/images/banner/Stars.svg'}
-                      alt='stars-icon'
-                      width={32}
-                      height={32}
-                      className='w-[60%]'
-                    />
-                  </div>
-                  <div>
-                    <h3 className='text-sm'>Rated by 25k on google.</h3>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+              </motion.button>
+            </motion.div>
           </div>
-
-          {/* DROPDOWN BUTTONS */}
-
-          {/* <div className='mx-auto max-w-4xl mt-12 p-6 lg:max-w-4xl lg:px-8 bg-white rounded-lg boxshadow'>
-            <div className='grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-8 xl:gap-x-8'>
-              <div className='col-span-3'>
-                <Dropdownone />
-              </div>
-              <div className='col-span-3'>
-                <Dropdowntwo />
-              </div>
-              <div className='col-span-3 sm:col-span-2 mt-2'>
-                <Link href={'/#courses-section'}>
-                  <button className='bg-primary w-full hover:bg-transparent hover:text-primary duration-300 border border-primary text-white font-bold py-4 px-3 rounded-sm hover:cursor-pointer'>
-                    Start
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Banner
+export default Banner;

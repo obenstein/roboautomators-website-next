@@ -4,10 +4,9 @@ export type CourseDetailType = {
   profession: string
   price: string
   category:
-    | 'mobiledevelopment'
-    | 'webdevelopment'
-    | 'datascience'
-    | 'cloudcomputing'
+    | 'robotics'
+    | 'gamedevelopment'
+    | 'mindskills'
   curriculum?: string[]
   classes?: number
   eligibility?: {
