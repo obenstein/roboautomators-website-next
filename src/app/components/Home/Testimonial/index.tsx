@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import { TestimonialType } from '@/app/types/testimonial'
 import TestimonialSkeleton from '../../Skeleton/Testimonial'
 import { motion } from 'framer-motion'
+import { Icon } from '@iconify/react'
 
 // CAROUSEL SETTINGS
 
@@ -54,73 +55,82 @@ const Testimonial = () => {
     ],
   }
   return (
-    <section id='testimonial-section' className='bg-cream'>
+    <section id='testimonial-section' className='py-20 bg-gradient-to-br from-blue-50 to-purple-50'>
       <div className='container'>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className='flex flex-col sm:flex-row gap-5 justify-between sm:items-center mb-6'
+          className='text-center mb-12'
         >
-          <h2 className='font-bold tracking-tight'>
-            What Our Happy <br /> <span className='text-[#238fc4]'>Certified </span>Students Say
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="inline-block mb-4 px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full"
+          >
+            <span className="text-white font-semibold text-sm tracking-wide">
+              ⭐ TESTIMONIALS
+            </span>
+          </motion.div>
+
+          <h2 className='font-bold tracking-tight mb-4'>
+            What Our Happy <span className='text-gradient-primary'>Students Say</span>
           </h2>
-          <div>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className='bg-transparent cursor-pointer hover:bg-primary text-primary font-semibold hover:text-white py-3 px-4 border border-primary hover:border-transparent rounded-lg duration-300 transition-all shadow-sm hover:shadow-md'
-            >
-              Give Your Review
-            </motion.button>
-          </div>
+
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-6">
+            Hear from students and parents who have transformed their robotics skills with our platform
+          </p>
+
+          <motion.button
+            whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(168, 85, 247, 0.4)' }}
+            whileTap={{ scale: 0.95 }}
+            className='btn-premium bg-gradient-to-r from-purple-500 to-pink-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-all'
+          >
+            Share Your Story
+          </motion.button>
         </motion.div>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className='text-lg font-medium mb-6'
-        >
-          Build skills with our courses and mentor <br /> from world-class
-          companies.
-        </motion.p>
+
         <Slider {...settings}>
           {loading
             ? Array.from({ length: 3 }).map((_, i) => (
                 <TestimonialSkeleton key={i} />
               ))
             : testimonial.map((items, i) => (
-                <div key={i}>
+                <div key={i} className='px-3'>
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
                     whileHover={{ y: -5 }}
-                    className='bg-white m-4 pt-8 px-12 pb-10 text-center rounded-lg shadow-md hover:shadow-xl transition-all duration-300'
+                    className='glass-card m-2 pt-8 px-8 pb-10 text-center rounded-2xl hover:shadow-2xl transition-all duration-300 h-full'
                   >
-                    <div className="relative z-0 flex justify-center items-center before:absolute before:bg-[url('/images/testimonial/greenpic.svg')] before:h-6 before:w-6 before:bottom-0 before:z-10 before:left-54%">
-                      <Image
-                        src={items.imgSrc}
-                        alt='gaby'
-                        width={64}
-                        height={64}
-                        className='inline-block rounded-full ring-2 ring-white relative'
-                      />
+                    <div className="relative z-0 flex justify-center items-center mb-4">
+                      <div className='relative'>
+                        <Image
+                          src={items.imgSrc}
+                          alt={items.name}
+                          width={80}
+                          height={80}
+                          className='inline-block rounded-full ring-4 ring-white shadow-lg'
+                        />
+                        <div className='absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-md'>
+                          <Icon icon='solar:check-circle-bold' className='text-white text-lg' />
+                        </div>
+                      </div>
                     </div>
-                    <p className='text-sm pt-4 pb-2'>{items.profession}</p>
-                    <p className='text-2xl font-semibold pb-3'>{items.name}</p>
-                    <Image
-                      src={items.starimg}
-                      alt='stars-img'
-                      className='m-auto pb-6 w-[30%]'
-                      width={32}
-                      height={32}
-                    />
-                    <p className='text-lg font-medium leading-7'>
-                      {items.detail}
+                    <p className='text-sm text-gray-600 font-medium pt-2 pb-1'>{items.profession}</p>
+                    <p className='text-2xl font-bold text-gray-900 pb-3'>{items.name}</p>
+                    <div className='flex justify-center gap-1 pb-4'>
+                      {[...Array(5)].map((_, index) => (
+                        <Icon key={index} icon='solar:star-bold' className='text-yellow-400 text-xl' />
+                      ))}
+                    </div>
+                    <p className='text-base text-gray-700 leading-relaxed italic'>
+                      "{items.detail}"
                     </p>
                   </motion.div>
                 </div>
@@ -132,3 +142,4 @@ const Testimonial = () => {
 }
 
 export default Testimonial
+
