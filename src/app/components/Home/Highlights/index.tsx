@@ -1,8 +1,29 @@
 'use client'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Icon } from '@iconify/react'
 
 const Highlights = () => {
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
+
+  const eventVideos = [
+    {
+      title: 'Spark',
+      videoSrc: 'https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQwRBPsf06iNBCnZ5WosTPzA04lYIj8mDtykr1O',
+      tag: 'Onsite Collaboration',
+    },
+    {
+      title: 'TeknoFest',
+      videoSrc: 'https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw3qToJyA7bCXF1dG4BtVMu67eNmT8zaxIOoc3',
+      tag: 'Annual Robotics Championship',
+    },
+    {
+      title: 'Technotious',
+      videoSrc: 'https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw0n577Vq9HLaqbvgirxB5Wf7kXwdyNZCeosn8',
+      tag: 'Robotics & Automation Event',
+    },
+  ]
+
   const highlights = [
     {
       title: 'Events & Competitions',
@@ -139,24 +160,94 @@ const Highlights = () => {
           ))}
         </div>
 
-        {/* Placeholder for media content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className='mt-12 text-center bg-gray-50 rounded-xl p-8 border-2 border-dashed border-gray-300'>
-          <Icon
-            icon='solar:gallery-bold-duotone'
-            className='text-6xl text-gray-400 mx-auto mb-4'
-          />
-          <p className='text-gray-600 text-lg'>
-            Media Gallery Coming Soon
-          </p>
-          <p className='text-gray-500 text-sm mt-2'>
-            Videos and photos from our events, competitions, and student achievements will be displayed here
-          </p>
-        </motion.div>
+        {/* Event Highlights Video Gallery */}
+        <div className='mt-20'>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className='text-center mb-10'>
+            <div className='inline-block px-4 py-1.5 bg-primary/10 rounded-full mb-4'>
+              <span className='text-primary font-bold text-xs tracking-widest uppercase'>Live Experience</span>
+            </div>
+            <h2 className='text-3xl font-bold text-gray-900'>Live from Our Events</h2>
+            <p className='text-gray-600 mt-2'>Experience the energy and innovation at our onsite competitions</p>
+          </motion.div>
+
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+            {eventVideos.map((event, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className='relative group cursor-pointer'
+                onClick={() => setSelectedVideo(event.videoSrc)}>
+                <div className='relative aspect-video rounded-3xl overflow-hidden bg-slate-900 border-2 border-gray-100 shadow-lg group-hover:shadow-2xl transition-all duration-500'>
+                  {/* Muted Autoplay Preview */}
+                  <video
+                    className='absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700'
+                    src={event.videoSrc}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  />
+                  
+                  {/* Glass Overlay */}
+                  <div className='absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors duration-500 flex items-center justify-center'>
+                    <div className='w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300'>
+                      <Icon icon='solar:play-bold' className='text-white text-2xl ml-1' />
+                    </div>
+                  </div>
+
+                  {/* Tag & Title */}
+                  <div className='absolute bottom-4 left-4 right-4'>
+                    <div className='glass-premium px-4 py-3 rounded-2xl'>
+                      <p className='text-white/70 text-[10px] font-bold tracking-widest uppercase mb-0.5'>{event.tag}</p>
+                      <p className='text-white font-bold text-lg'>{event.title}</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Lightbox Modal */}
+        <AnimatePresence>
+          {selectedVideo && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className='fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 backdrop-blur-xl p-4 sm:p-20'
+              onClick={() => setSelectedVideo(null)}>
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                className='relative w-full max-w-6xl aspect-video rounded-3xl overflow-hidden shadow-2xl'
+                onClick={(e) => e.stopPropagation()}>
+                <video
+                  className='w-full h-full object-contain bg-black'
+                  src={selectedVideo}
+                  controls
+                  autoPlay
+                />
+                <motion.button
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  className='absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors'
+                  onClick={() => setSelectedVideo(null)}>
+                  <Icon icon='solar:close-bold' className='text-2xl' />
+                </motion.button>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )

@@ -107,7 +107,13 @@ const HowItWorks = () => {
         {/* Steps Timeline */}
         <div className="relative mb-20">
           {/* Connection Line - Desktop */}
-          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-blue-200 via-purple-200 to-orange-200 transform -translate-y-1/2 z-0" />
+          <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gray-100 z-0 overflow-hidden rounded-full transform -translate-y-1/2">
+            <motion.div 
+              animate={{ x: ['-100%', '100%'] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/40 to-transparent w-full h-full"
+            />
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
             {steps.map((step, index) => (

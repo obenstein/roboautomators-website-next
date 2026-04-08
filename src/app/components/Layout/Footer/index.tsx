@@ -35,23 +35,32 @@ const Footer = () => {
       >
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-16 xl:gap-8'>
           <div className='col-span-4 flex flex-col gap-5'>
-            <div>
+            <div className="relative w-48 h-12">
               <Image
-                src='/images/logo/logo2.svg'
-                alt='Logo'
-                width={48}
-                height={64}
+                src='/images/logo/logo.svg'
+                alt='RoboAutomators Logo'
+                fill
+                className="object-contain brightness-0 invert"
               />
             </div>
-            <p className='text-white text-lg font-medium leading-7'>
-              {' '}
-              Level up your skills, and get dream <br /> job with passion.{' '}
+            <p className='text-white/80 text-lg font-medium leading-relaxed'>
+              Empowering the future builders through hands-on robotics, coding, and AI education.
             </p>
             <div className='flex gap-4'>
               <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                 <Link
-                  href='/'
-                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
+                  href='https://facebook.com'
+                  className='bg-white/10 rounded-full p-2.5 text-white hover:bg-white hover:text-primary transition-all duration-300 inline-block'>
+                  <Icon
+                    icon='tabler:brand-facebook'
+                    className='text-2xl inline-block'
+                  />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href='https://instagram.com'
+                  className='bg-white/10 rounded-full p-2.5 text-white hover:bg-white hover:text-primary transition-all duration-300 inline-block'>
                   <Icon
                     icon='tabler:brand-instagram'
                     className='text-2xl inline-block'
@@ -60,30 +69,20 @@ const Footer = () => {
               </motion.div>
               <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                 <Link
-                  href='/'
-                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
+                  href='https://linkedin.com'
+                  className='bg-white/10 rounded-full p-2.5 text-white hover:bg-white hover:text-primary transition-all duration-300 inline-block'>
                   <Icon
-                    icon='tabler:brand-dribbble'
+                    icon='tabler:brand-linkedin'
                     className='text-2xl inline-block'
                   />
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                 <Link
-                  href='/'
-                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
+                  href='https://youtube.com'
+                  className='bg-white/10 rounded-full p-2.5 text-white hover:bg-white hover:text-primary transition-all duration-300 inline-block'>
                   <Icon
-                    icon='tabler:brand-twitter-filled'
-                    className='text-2xl inline-block'
-                  />
-                </Link>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
-                <Link
-                  href='/'
-                  className='bg-white/20 rounded-full p-2 text-white hover:bg-cream hover:text-primary duration-300 inline-block'>
-                  <Icon
-                    icon='tabler:brand-youtube-filled'
+                    icon='tabler:brand-youtube'
                     className='text-2xl inline-block'
                   />
                 </Link>
@@ -96,15 +95,15 @@ const Footer = () => {
             <div className='flex gap-20'>
               {footerlink.map((product, i) => (
                 <div key={i} className='group relative col-span-2'>
-                  <p className='text-white text-xl font-semibold mb-9'>
+                  <p className='text-white text-xl font-semibold mb-9 py-2 border-b border-white/10'>
                     {product.section}
                   </p>
-                  <ul>
+                  <ul className="space-y-4">
                     {product.links.map((item, i) => (
-                      <li key={i} className='mb-3'>
+                      <li key={i}>
                         <Link
                           href={item.href}
-                          className='text-white/60 hover:text-white text-sm font-normal mb-6'>
+                          className='text-white/60 hover:text-white transition-colors text-base'>
                           {item.label}
                         </Link>
                       </li>
@@ -120,21 +119,22 @@ const Footer = () => {
             <h3 className='text-white text-xl font-semibold mb-6'>
               Stay up to date
             </h3>
-            <div className='relative text-white focus-within:text-white flex flex-row-reverse w-[50%] lg:w-full'>
+            <p className="text-white/60 mb-6 font-medium">Get the latest robotics news and course updates.</p>
+            <div className='relative text-white focus-within:text-white flex flex-row-reverse w-full'>
               <input
-                type='Email address'
-                name='q'
-                className='py-4 text-sm w-full text-white bg-white/15 rounded-md pl-4 focus:outline-hidden bg-emailbg focus:text-white'
+                type='email'
+                name='email'
+                className='py-4 text-sm w-full text-white bg-white/10 border border-white/20 rounded-xl pl-4 focus:outline-none focus:border-white focus:bg-white/20 transition-all'
                 placeholder='Your email address'
                 autoComplete='off'
               />
-              <div className='absolute inset-y-0 right-0 flex items-center pr-2'>
+              <div className='absolute inset-y-0 right-0 flex items-center pr-3'>
                 <button
                   type='submit'
-                  className='p-1 focus:outline-hidden focus:shadow-outline'>
+                  className='bg-white text-primary p-2 rounded-lg hover:bg-primary hover:text-white transition-all'>
                   <Icon
                     icon='tabler:send'
-                    className='text-white text-2xl inline-block me-2'
+                    className='text-xl inline-block'
                   />
                 </button>
               </div>
@@ -142,17 +142,16 @@ const Footer = () => {
           </div>
         </div>
       </motion.div>
-      <div className='py-3'>
-        <h3 className='text-center text-white/60'>
-          @2025 - All Rights Reserved by{' '}
-          <Link
-            href='https://adminmart.com/'
-            target='_blank'
-            className='hover:text-white'>
-            {' '}
-            GetNextJs Templates.com
-          </Link>
-        </h3>
+      <div className='py-8 border-t border-white/10'>
+        <div className="container flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className='text-white/60 text-sm'>
+            &copy; {new Date().getFullYear()} RoboAutomators. All Rights Reserved.
+          </p>
+          <div className="flex gap-6">
+            <Link href="/" className="text-white/40 hover:text-white text-sm transition-colors">Privacy Policy</Link>
+            <Link href="/" className="text-white/40 hover:text-white text-sm transition-colors">Terms of Service</Link>
+          </div>
+        </div>
       </div>
     </div>
   )

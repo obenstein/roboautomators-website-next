@@ -8,6 +8,7 @@ import { TestimonialType } from '@/app/types/testimonial'
 import TestimonialSkeleton from '../../Skeleton/Testimonial'
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
+import VideoTestimonial from './VideoTestimonial'
 
 // CAROUSEL SETTINGS
 
@@ -92,6 +93,8 @@ const Testimonial = () => {
             Share Your Story
           </motion.button>
         </motion.div>
+
+        <VideoTestimonial />
 
         <Slider {...settings}>
           {loading

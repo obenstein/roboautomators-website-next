@@ -8,6 +8,8 @@ import Signin from '@/app/components/Auth/SignIn'
 import SignUp from '@/app/components/Auth/SignUp'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { HeaderItem } from '@/app/types/menu'
+import Link from 'next/link'
+import { motion } from "framer-motion";
 
 const Header: React.FC = () => {
   const [headerData, setHeaderData] = useState<HeaderItem[]>([])
@@ -149,13 +151,19 @@ const Header: React.FC = () => {
                 </div>
               </div>
             )}
-            <button
-              className='hidden lg:block bg-primary text-white text-base font-medium hover:bg-transparent hover:scale-105 duration-300 hover:text-primary border border-primary px-6 py-2 rounded-lg hover:cursor-pointer transition-all shadow-md hover:shadow-glow'
-              onClick={() => {
-                setIsSignUpOpen(true)
-              }}>
-              Register Now
-            </button>
+               <Link href="/registration">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`glass-premium border-2 px-6 py-2 md:px-10 md:py-4 rounded-full font-bold text-lg md:text-xl transition-all ${
+                    sticky
+                      ? 'border-primary/50 text-primary hover:bg-primary/10'
+                      : 'border-white/30 text-white hover:bg-white/10'
+                  }`}
+                >
+                  Register Now
+                </motion.button>
+              </Link>
             {isSignUpOpen && (
               <div className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50'>
                 <div

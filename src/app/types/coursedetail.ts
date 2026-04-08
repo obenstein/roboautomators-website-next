@@ -7,10 +7,12 @@ export type CourseDetailType = {
     | 'robotics'
     | 'gamedevelopment'
     | 'mindskills'
+    | 'programming'
   curriculum?: string[]
   classes?: number
   eligibility?: {
     age: string
     background?: string
   }
+  outcome?: string
 }

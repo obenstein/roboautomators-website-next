@@ -4,6 +4,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 const Companies = () => {
   const settings = {
@@ -64,22 +65,34 @@ const Companies = () => {
   }, [])
 
   return (
-    <section>
+    <section className='py-24 bg-white'>
       <div className='container mx-auto max-w-7xl px-4'>
-        <h2 className='font-bold tracking-tight mb-6 text-center'>
-          Our <span className='text-[#238fc4]'>Clients</span>
-        </h2>
-        <div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className='text-center mb-12'
+        >
+          <h2 className='text-3xl md:text-4xl font-bold tracking-tight mb-4'>
+            Our <span className='text-primary'>Clientele</span>
+          </h2>
+          <p className='text-gray-500 max-w-2xl mx-auto'>
+            Display logos of schools, institutions, and company partners who trust RoboAutomators.
+          </p>
+        </motion.div>
+        
+        <div className='px-4'>
           <Slider {...settings}>
             {companies.map((item, i) => (
-              <div key={i}>
-                <Image
-                  src={item.imgSrc}
-                  alt={item.imgSrc}
-                  width={100}
-                  height={50}
-                  className='w-auto'
-                />
+              <div key={i} className='px-6'>
+                <div className='relative h-20 w-full group'>
+                  <Image
+                    src={item.imgSrc}
+                    alt="Client Logo"
+                    fill
+                    className='object-contain grayscale hover:grayscale-0 transition-all duration-300 transform group-hover:scale-110'
+                  />
+                </div>
               </div>
             ))}
           </Slider>

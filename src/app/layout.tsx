@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/app/components/Layout/Header";
 import Footer from "@/app/components/Layout/Footer";
 import ScrollToTop from "@/app/components/ScrollToTop";
+import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
 import Aoscompo from "@/utils/aos";
 const font = Inter({ subsets: ["latin"] });
 
@@ -19,6 +20,7 @@ export default function RootLayout({
             {children}
             <Footer />
           </Aoscompo>
+          <FloatingWhatsApp />
           <ScrollToTop />
       </body>
     </html>

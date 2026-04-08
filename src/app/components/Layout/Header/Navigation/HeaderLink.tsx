@@ -7,7 +7,6 @@ import { usePathname } from 'next/navigation'
 const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string;sticky:boolean }> = ({ item,activeSection,sticky }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false)
   const isActive = item.href === `/#${activeSection}`
-  console.log({sticky})
 
   const path = usePathname()
   const handleMouseEnter = () => {

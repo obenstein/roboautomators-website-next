@@ -3,14 +3,14 @@ import Link from "next/link";
 
 const Logo: React.FC = () => {
   return (
-    <Link href="/">
+    <Link href="/" className="relative block w-[160px] h-[42px]">
       <Image
-        src="/images/logo/logo.svg"
-        alt="logo"
-        width={160}
-        height={50}
-        style={{ width: "200px", height: "50px" }}
+        src="/images/logo/logo1.png"
+        alt="RoboAutomators Logo"
+        fill
+        className="object-contain"
         quality={100}
+        priority
       />
     </Link>
   );
