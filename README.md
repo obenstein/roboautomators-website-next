@@ -5,7 +5,7 @@ Next.js 15 website for Roboautomators - a robotics education platform.
 ## Tech Stack
 
 - **Framework**: Next.js 15.2.4 (App Router)
-- **React**: 19.0.0
+- **React**: 19.0.0 
 - **TypeScript**: 5.x
 - **Styling**: Tailwind CSS 4
 - **Animations**: Framer Motion, AOS
