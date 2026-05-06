@@ -65,7 +65,7 @@ const MultiRegistration = () => {
             key="selection"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, opacity: 0 }}
+            exit={{ opacity: 0, scale: 0.95 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-8"
           >
             {forms.map((form) => (
