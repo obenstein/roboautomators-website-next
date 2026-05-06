@@ -107,15 +107,12 @@ const Introduction = () => {
             <Icon icon="solar:close-circle-bold" className="text-4xl" />
           </button>
           <div className="w-full max-w-5xl aspect-video bg-gray-800 rounded-3xl overflow-hidden shadow-2xl">
-            <iframe 
-               width="100%" 
-               height="100%" 
-               src="https://www.youtube.com/embed/placeholder" 
-               title="ARY Good Morning Pakistan Feature" 
-               frameBorder="0" 
-               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-               allowFullScreen
-            ></iframe>
+            <video 
+              src="https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw7xIkuj0I9VQwzJvbSW6XUeMlhTtipjkRHNox" 
+              className="w-full h-full" 
+              controls 
+              autoPlay 
+            />
           </div>
         </div>
       )}
