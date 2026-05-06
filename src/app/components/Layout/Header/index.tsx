@@ -123,7 +123,7 @@ const Header: React.FC = () => {
               <HeaderLink key={index} item={item} activeSection={activeSection} sticky={sticky}/>
             ))}
           </nav>
-          <div className='flex items-center gap-4'>
+          <div className='flex items-center gap-2 md:gap-4'>
             {/* <button
               className='hidden lg:block bg-transparent text-primary border hover:bg-primary border-primary hover:text-white duration-300 px-6 py-2 rounded-lg hover:cursor-pointer'
               onClick={() => {
@@ -151,11 +151,11 @@ const Header: React.FC = () => {
                 </div>
               </div>
             )}
-               <Link href="/registration">
+               <Link href="/registration" className="hidden sm:flex flex-shrink-0">
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`glass-premium border-2 px-6 py-2 md:px-10 md:py-4 rounded-full font-bold text-lg md:text-xl transition-all ${
+                  className={`glass-premium border-2 px-4 py-1.5 md:px-10 md:py-4 rounded-full font-bold text-sm md:text-xl transition-all whitespace-nowrap ${
                     sticky
                       ? 'border-primary/50 text-primary hover:bg-primary/10'
                       : 'border-white/30 text-white hover:bg-white/10'
@@ -186,11 +186,11 @@ const Header: React.FC = () => {
             )}
             <button
               onClick={() => setNavbarOpen(!navbarOpen)}
-              className='block lg:hidden p-2 rounded-lg'
+              className='block lg:hidden p-2 rounded-lg transition-colors'
               aria-label='Toggle mobile menu'>
-              <span className='block w-6 h-0.5 bg-black'></span>
-              <span className='block w-6 h-0.5 bg-black mt-1.5'></span>
-              <span className='block w-6 h-0.5 bg-black mt-1.5'></span>
+              <span className={`block w-6 h-0.5 transition-colors ${sticky ? 'bg-black' : 'bg-white'}`}></span>
+              <span className={`block w-6 h-0.5 mt-1.5 transition-colors ${sticky ? 'bg-black' : 'bg-white'}`}></span>
+              <span className={`block w-6 h-0.5 mt-1.5 transition-colors ${sticky ? 'bg-black' : 'bg-white'}`}></span>
             </button>
           </div>
         </div>
@@ -222,23 +222,13 @@ const Header: React.FC = () => {
             {headerData.map((item, index) => (
               <MobileHeaderLink key={index} item={item} />
             ))}
-            <div className='mt-4 flex flex-col gap-4 w-full'>
-              {/* <button
-                className='bg-primary text-white px-4 py-2 rounded-lg border  border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out'
-                onClick={() => {
-                  setIsSignInOpen(true)
-                  setNavbarOpen(false)
-                }}>
-                Sign In
-              </button> */}
-              {/* <button
-                className='bg-primary text-white px-4 py-2 rounded-lg border  border-primary hover:text-primary hover:bg-transparent hover:cursor-pointer transition duration-300 ease-in-out'
-                onClick={() => {
-                  setIsSignUpOpen(true)
-                  setNavbarOpen(false)
-                }}>
-                Sign Up
-              </button> */}
+            <div className='mt-8 flex flex-col gap-4 w-full'>
+              <Link href="/registration" onClick={() => setNavbarOpen(false)}>
+                <button className='w-full bg-primary text-white px-6 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-all'>
+                  <Icon icon="solar:pen-new-square-bold-duotone" className="text-2xl" />
+                  Register Now
+                </button>
+              </Link>
             </div>
           </nav>
         </div>

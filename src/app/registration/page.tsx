@@ -2,63 +2,9 @@
 import React from 'react'
 import { Icon } from '@iconify/react'
 import { motion } from 'framer-motion'
-import RegistrationForm from '@/app/components/Registration/RegistrationForm'
+import MultiRegistration from '@/app/components/Registration/MultiRegistration'
 
 const RegistrationPage = () => {
-  const programs = [
-    {
-      title: 'Online Courses',
-      details: [
-        'Interactive recorded lessons (flexible weekly deadline)',
-        'Weekly live sessions for direct mentor coaching',
-        'Hands-on coding and robotics platform access',
-      ],
-      fee: 'PKR 25,000/course',
-      kit: 'PKR 25,000',
-      icon: 'solar:videocamera-record-bold-duotone',
-      color: 'text-blue-600',
-      bgColor: 'bg-blue-50',
-    },
-    {
-      title: 'After-School Programs',
-      details: [
-        'All kits, tablets, and laptops provided on-site',
-        'Robotics/AI sessions: 1 hour duration',
-        'Mind Maths sessions: 35 min duration',
-        '2 classes/week on-site projects',
-      ],
-      fee: 'PKR 12,000/month',
-      other: 'Mind Maths: PKR 6,000',
-      icon: 'solar:users-group-two-rounded-bold-duotone',
-      color: 'text-purple-600',
-      bgColor: 'bg-purple-50',
-    },
-    {
-      title: 'Summer & Winter Camps',
-      details: [
-        'Intensive 4-week program (2 classes/week)',
-        'Team competitions and project showcases',
-        'All equipment and materials provided',
-      ],
-      fee: 'PKR 12,000 (Full Camp)',
-      icon: 'solar:calendar-bold-duotone',
-      color: 'text-emerald-600',
-      bgColor: 'bg-emerald-50',
-    },
-    {
-      title: 'School Partnerships',
-      details: [
-        '1 class/week per grade (integrated into timetable)',
-        'Different specialized courses per age group',
-        'Full curriculum and hardware ecosystem',
-      ],
-      fee: 'Contact for Quote',
-      icon: 'solar:buildings-bold-duotone',
-      color: 'text-orange-600',
-      bgColor: 'bg-orange-50',
-    },
-  ]
-
   return (
     <main className="pt-32 pb-24 bg-gray-50/50 min-h-screen">
       <div className="container mx-auto max-w-7xl px-4">
@@ -69,85 +15,71 @@ const RegistrationPage = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-16"
         >
-          <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Registration Hub</span>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 px-4">Choose Your Learning Program</h1>
+          <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Enroll Now</span>
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 px-4 tracking-tight">
+            Start Your <span className="text-primary">Robotics</span> Journey
+          </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto px-4 leading-relaxed">
-            From flexible online courses to intensive holiday camps and year-round after-school programs, we have the perfect path for every young innovator.
+            Select the program that fits you best and register in seconds. Our mentors will handle the rest.
           </p>
         </motion.div>
 
-        <div className="flex flex-col lg:flex-row gap-16">
-          
-          {/* Left Content: Program Details */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2 }}
-            className="flex-1 space-y-8"
-          >
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Program Details</h2>
-            
-            <div className="grid grid-cols-1 gap-6">
-              {programs.map((program, index) => (
-                <div key={index} className="bg-white rounded-[2rem] p-8 shadow-sm border border-gray-100 flex flex-col md:flex-row gap-6">
-                  <div className={`w-16 h-16 rounded-2xl ${program.bgColor} flex items-center justify-center flex-shrink-0`}>
-                    <Icon icon={program.icon} className={`text-3xl ${program.color}`} />
-                  </div>
-                  <div className="flex-grow">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{program.title}</h3>
-                    <ul className="mb-4 space-y-1">
-                      {program.details.map((detail, dIndex) => (
-                        <li key={dIndex} className="text-gray-500 text-sm flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-gray-300" />
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="flex flex-wrap gap-4 items-center">
-                      <div className="bg-blue-50 text-blue-700 px-4 py-1.5 rounded-full font-bold text-sm">
-                        Fee: {program.fee}
-                      </div>
-                      {program.kit && (
-                        <div className="bg-purple-50 text-purple-700 px-4 py-1.5 rounded-full font-bold text-sm">
-                          Kit: {program.kit}
-                        </div>
-                      )}
-                      {program.other && (
-                        <div className="bg-orange-50 text-orange-700 px-4 py-1.5 rounded-full font-bold text-sm">
-                          {program.other}
-                        </div>
-                      )}
+        {/* Main Content: MultiRegistration Selector & Forms */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+        >
+          <MultiRegistration />
+        </motion.div>
+
+        {/* Footer Info: Registration Flow */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-24 max-w-4xl mx-auto"
+        >
+          <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-sm border border-gray-100 flex flex-col md:flex-row items-center gap-12">
+            <div className="flex-1">
+              <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+                <Icon icon="solar:info-circle-bold-duotone" className="text-primary text-3xl" />
+                How it works?
+              </h3>
+              <div className="space-y-6">
+                {[
+                  { step: '01', title: 'Pick a Program', desc: 'Choose the registration track that fits your needs.' },
+                  { step: '02', title: 'Submit Details', desc: 'Fill the quick form and redirect to WhatsApp.' },
+                  { step: '03', title: 'Mentor Sync', desc: 'A mentor will reach out within 24 hours for evaluation.' },
+                  { step: '04', title: 'Get Started', desc: 'Receive your course plan and robotics kit.' }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <span className="text-primary font-black text-xl opacity-20">{item.step}</span>
+                    <div>
+                      <h4 className="font-bold text-gray-900">{item.title}</h4>
+                      <p className="text-sm text-gray-500">{item.desc}</p>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-emerald-50 rounded-3xl p-8 border border-emerald-100 flex items-start gap-4">
-              <Icon icon="solar:info-circle-bold-duotone" className="text-2xl text-emerald-600 flex-shrink-0 mt-1" />
-              <div>
-                <h4 className="font-bold text-emerald-900 mb-1">Registration Flow:</h4>
-                <p className="text-sm text-emerald-800 leading-relaxed">
-                  1. Submit the registration form via WhatsApp. <br />
-                  2. Our mentor will reach out within 24 hours. <br />
-                  3. A brief technical evaluation for advanced courses. <br />
-                  4. Course assignment and kit delivery.
-                </p>
+                ))}
               </div>
             </div>
-          </motion.div>
+            
+            <div className="w-full md:w-80 bg-primary/5 rounded-3xl p-8 border border-primary/10">
+              <Icon icon="solar:chat-round-dots-bold-duotone" className="text-4xl text-primary mb-4" />
+              <h4 className="font-bold text-gray-900 mb-2">Need Help?</h4>
+              <p className="text-sm text-gray-600 mb-6">Not sure which program to choose? Talk to our education consultant.</p>
+              <a 
+                href="https://wa.me/923073744526" 
+                target="_blank" 
+                className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-full font-bold text-sm hover:scale-105 transition-transform"
+              >
+                <Icon icon="logos:whatsapp-icon" className="brightness-0 invert" />
+                Chat with Mentor
+              </a>
+            </div>
+          </div>
+        </motion.div>
 
-          {/* Right Content: Dynamic Form */}
-          <motion.div 
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex-1"
-          >
-            <RegistrationForm />
-          </motion.div>
-
-        </div>
       </div>
     </main>
   )

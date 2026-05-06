@@ -36,14 +36,6 @@ export default function ScrollToTop() {
   return (
     <div className='fixed bottom-8 right-8 z-[999]'>
       <div className='flex items-center gap-2.5'>
-        <Link
-          href={
-            'https://getnextjstemplates.com/products/si-educational-free-nextjs-landing-page-template'
-          }
-          target='_blank'
-          className='hidden lg:block bg-primary text-white hover:bg-primary-dark text-sm px-4 py-3.5 leading-none rounded-lg font-medium text-nowrap transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg'>
-          Download Now
-        </Link>
         <AnimatePresence>
           {isVisible && (
             <motion.div

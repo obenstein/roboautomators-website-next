@@ -3,11 +3,12 @@ import Link from "next/link";
 
 const Logo: React.FC = () => {
   return (
-    <Link href="/" className="relative block w-[160px] h-[42px]">
+    <Link href="/" className="block ">
       <Image
         src="/images/logo/logo1.png"
         alt="RoboAutomators Logo"
-        fill
+        width={150}
+        height={150}
         className="object-contain"
         quality={100}
         priority
