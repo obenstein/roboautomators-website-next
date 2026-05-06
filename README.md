@@ -1,6 +1,6 @@
 # Roboautomators Website
 
-Next.js 15 website for Roboautomators - a robotics education platform.
+Next.js 15.0 website for Roboautomators - a robotics education platform.
 
 ## Tech Stack
 
