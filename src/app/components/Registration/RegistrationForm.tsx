@@ -27,13 +27,8 @@ const RegistrationForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    // Simulate API call
-    setTimeout(() => {
-      setLoader(false)
-      setShowSuccess(true)
-      
-      // WhatsApp redirection logic
-      const message = `Hello Roboautomators! I want to register my child for a program.
+    // Build WhatsApp URL immediately
+    const message = `Hello Roboautomators! I want to register my child for a program.
 *Parent Name:* ${formData.parentName}
 *Student Name:* ${formData.studentName}
 *Age:* ${formData.age}
@@ -41,11 +36,14 @@ const RegistrationForm = () => {
 *City:* ${formData.city}
 *Program:* ${formData.program}
 *Interested Course:* ${formData.course}`
-      
-      const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-      
-      window.open(whatsappUrl, '_blank')
-    }, 1500)
+    
+    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
+    
+    // Open immediately within user gesture to avoid iOS popup blocker
+    window.open(whatsappUrl, '_blank')
+    
+    setLoader(false)
+    setShowSuccess(true)
   }
 
   return (

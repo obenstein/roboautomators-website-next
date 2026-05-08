@@ -103,6 +103,7 @@ const VideoTestimonial = () => {
                 src='https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw3qHMqqr7bCXF1dG4BtVMu67eNmT8zaxIOoc3'
                 controls
                 autoPlay
+                playsInline
               />
               <motion.button
                 whileHover={{ scale: 1.1, rotate: 90 }}

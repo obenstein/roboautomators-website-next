@@ -120,7 +120,8 @@ const Introduction = () => {
               src="https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw7xIkuj0I9VQwzJvbSW6XUeMlhTtipjkRHNox" 
               className="w-full h-full" 
               controls 
-              autoPlay 
+              autoPlay
+              playsInline
             />
           </div>
         </div>

@@ -493,3 +493,10 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
+
+/* Prevent iOS Safari zoom on input focus */
+@supports (-webkit-touch-callout: none) {
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+}

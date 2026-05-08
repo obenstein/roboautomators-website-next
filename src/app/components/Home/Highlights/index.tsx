@@ -236,6 +236,7 @@ const Highlights = () => {
                   src={selectedVideo}
                   controls
                   autoPlay
+                  playsInline
                 />
                 <motion.button
                   whileHover={{ scale: 1.1, rotate: 90 }}

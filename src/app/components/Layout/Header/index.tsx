@@ -107,9 +107,18 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     if (isSignInOpen || isSignUpOpen || navbarOpen) {
-      document.body.style.overflow = 'hidden'
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflowY = 'scroll'
     } else {
-      document.body.style.overflow = ''
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflowY = ''
+      window.scrollTo(0, parseInt(scrollY || '0') * -1)
     }
   }, [isSignInOpen, isSignUpOpen, navbarOpen])
 
@@ -210,7 +219,7 @@ const Header: React.FC = () => {
         </AnimatePresence>
         <div
           ref={mobileMenuRef}
-          className={`lg:hidden fixed top-0 right-0  w-[300px] bg-white shadow-2xl transform transition-transform duration-500 ease-in-out h-[100vh] ${
+          className={`lg:hidden fixed top-0 right-0  w-[300px] bg-white shadow-2xl transform transition-transform duration-500 ease-in-out h-dvh ${
             navbarOpen ? 'translate-x-0' : 'translate-x-full'
           } z-50 flex flex-col`}>
           <div className='flex items-center justify-between p-6 border-b border-gray-50'>

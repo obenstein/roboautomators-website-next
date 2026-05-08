@@ -27,11 +27,7 @@ const GeneralProgramForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    setTimeout(() => {
-      setLoader(false)
-      setShowSuccess(true)
-      
-      const message = `Hello Roboautomators! I want to register my child for the Robotics Program.
+    const message = `Hello Roboautomators! I want to register my child for the Robotics Program.
 *Student Name:* ${formData.studentName}
 *Parent Name:* ${formData.parentName}
 *Age:* ${formData.age}
@@ -41,10 +37,12 @@ const GeneralProgramForm = () => {
 *Address:* ${formData.address}
 *Join MindMath?:* ${formData.mindMath}
 *Heard From:* ${formData.source}`
-      
-      const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-      window.open(whatsappUrl, '_blank')
-    }, 1500)
+    
+    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
+    
+    setLoader(false)
+    setShowSuccess(true)
   }
 
   return (

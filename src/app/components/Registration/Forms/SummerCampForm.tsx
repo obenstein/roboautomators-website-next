@@ -32,11 +32,7 @@ const SummerCampForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    setTimeout(() => {
-      setLoader(false)
-      setShowSuccess(true)
-      
-      const message = `Hello Roboautomators! I want to register for the Summer Camp.
+    const message = `Hello Roboautomators! I want to register for the Summer Camp.
 *Batch:* ${formData.batch}
 *Student Name:* ${formData.studentName}
 *Parent Name:* ${formData.parentName}
@@ -45,10 +41,12 @@ const SummerCampForm = () => {
 *Email:* ${formData.email}
 *Address:* ${formData.address}
 *Heard From:* ${formData.source}`
-      
-      const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-      window.open(whatsappUrl, '_blank')
-    }, 1500)
+    
+    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
+    
+    setLoader(false)
+    setShowSuccess(true)
   }
 
   return (

@@ -25,11 +25,7 @@ const SchoolForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    setTimeout(() => {
-      setLoader(false)
-      setShowSuccess(true)
-      
-      const message = `Hello Roboautomators! I am interested in a School Partnership.
+    const message = `Hello Roboautomators! I am interested in a School Partnership.
 *Name:* ${formData.name}
 *Role:* ${formData.role}
 *School:* ${formData.schoolName}
@@ -37,10 +33,12 @@ const SchoolForm = () => {
 *Email:* ${formData.email}
 *Address:* ${formData.address}
 *Has STEM programs?:* ${formData.stemStatus}`
-      
-      const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-      window.open(whatsappUrl, '_blank')
-    }, 1500)
+    
+    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
+    
+    setLoader(false)
+    setShowSuccess(true)
   }
 
   return (

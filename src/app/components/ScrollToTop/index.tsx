@@ -15,7 +15,7 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      if (window.scrollY > 300) {
         setIsVisible(true)
       } else {
         setIsVisible(false)
@@ -23,7 +23,7 @@ export default function ScrollToTop() {
       
       // Calculate scroll progress
       const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
-      const scrolled = (window.pageYOffset / windowHeight) * 100
+      const scrolled = (window.scrollY / windowHeight) * 100
       setScrollProgress(scrolled)
     }
 
