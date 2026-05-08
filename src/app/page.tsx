@@ -28,7 +28,7 @@ export default function Home() {
       <Courses />
       <Highlights />
       <PartnerCompanies />
-      <Mentor />
+      {/* <Mentor /> */}
       <Companies />
       <Testimonial />
       <ContactForm />
