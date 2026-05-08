@@ -133,7 +133,7 @@ const Testimonial = () => {
                       ))}
                     </div>
                     <p className='text-base text-gray-700 leading-relaxed italic'>
-                      "{items.detail}"
+                      &quot;{items.detail}&quot;
                     </p>
                   </motion.div>
                 </div>

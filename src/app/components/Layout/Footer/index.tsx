@@ -100,33 +100,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Newsletter Section */}
-          <div className='lg:col-span-3'>
-            <div className="p-8 rounded-[2rem] bg-gradient-to-br from-white/5 to-white/[0.02] border border-white/10 backdrop-blur-sm">
-              <h3 className='text-white text-xl font-bold mb-4'>
-                Newsletter
-              </h3>
-              <p className="text-gray-400 mb-6 text-sm leading-relaxed">
-                Stay updated with the latest in Robotics and STEM education.
-              </p>
-              <div className='flex flex-col gap-3'>
-                <div className='relative'>
-                  <input
-                    type='email'
-                    className='w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-4 pr-12 text-sm text-white focus:outline-none focus:border-primary transition-all'
-                    placeholder='Email address'
-                  />
-                  <button className='absolute right-2 top-2 bottom-2 aspect-square bg-primary text-white rounded-lg flex items-center justify-center hover:bg-primary-dark transition-colors'>
-                    <Icon icon='solar:send-bold' className='text-xl' />
-                  </button>
-                </div>
-                <p className="text-[10px] text-gray-500 text-center">
-                  By subscribing, you agree to our privacy policy.
-                </p>
-              </div>
-            </div>
-          </div>
-
         </div>
 
         {/* Footer Bottom */}

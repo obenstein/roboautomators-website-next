@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion'
 import { Icon } from '@iconify/react'
 import { useState } from 'react'
-import clsx from 'clsx'
+
 
 const CourseQuality = () => {
   const [expandedCourse, setExpandedCourse] = useState<number | null>(0)

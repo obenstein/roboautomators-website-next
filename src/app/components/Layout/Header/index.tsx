@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Logo from './Logo'
 import HeaderLink from '../Header/Navigation/HeaderLink'
 import MobileHeaderLink from '../Header/Navigation/MobileHeaderLink'
@@ -20,7 +20,7 @@ const Header: React.FC = () => {
   const [isSignInOpen, setIsSignInOpen] = useState(false)
   const [isSignUpOpen, setIsSignUpOpen] = useState(false)
 
-  const navbarRef = useRef<HTMLDivElement>(null)
+
   const signInRef = useRef<HTMLDivElement>(null)
   const signUpRef = useRef<HTMLDivElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
@@ -67,14 +67,14 @@ const Header: React.FC = () => {
     return () => observer.disconnect()
   }, [headerData])
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     setSticky(window.scrollY >= 10)
     if (window.scrollY < 20) {
       setActiveSection('Home')
     }
-  }
+  }, [])
 
-  const handleClickOutside = (event: MouseEvent) => {
+  const handleClickOutside = useCallback((event: MouseEvent) => {
     if (
       signInRef.current &&
       !signInRef.current.contains(event.target as Node)
@@ -94,7 +94,7 @@ const Header: React.FC = () => {
     ) {
       setNavbarOpen(false)
     }
-  }
+  }, [navbarOpen])
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll)
@@ -103,7 +103,7 @@ const Header: React.FC = () => {
       window.removeEventListener('scroll', handleScroll)
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [navbarOpen, isSignInOpen, isSignUpOpen])
+  }, [handleScroll, handleClickOutside])
 
   useEffect(() => {
     if (isSignInOpen || isSignUpOpen || navbarOpen) {

@@ -18,7 +18,7 @@ const Signin = () => {
   })
   const [loading, setLoading] = useState(false)
 
-  const loginUser = (e: any) => {
+  const loginUser = (e: React.MouseEvent | React.FormEvent) => {
     e.preventDefault()
 
     setLoading(true)
@@ -37,7 +37,7 @@ const Signin = () => {
           router.push('/')
         }
       })
-      .catch((err) => {
+      .catch((err: any) => {
         setLoading(false)
         console.log(err.message)
         toast.error(err.message)

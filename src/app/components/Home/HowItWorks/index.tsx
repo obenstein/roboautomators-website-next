@@ -100,7 +100,7 @@ const HowItWorks = () => {
 
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Our subscription-based learning platform makes it easy to start your robotics journey. 
-            Here's how you go from beginner to robotics expert.
+            Here&apos;s how you go from beginner to robotics expert.
           </p>
         </motion.div>
 

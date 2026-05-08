@@ -10,7 +10,6 @@ const ContactForm = () => {
     phnumber: '',
     Message: '',
   })
-  const [submitted, setSubmitted] = useState(false)
   const [showThanks, setShowThanks] = useState(false)
   const [loader, setLoader] = useState(false)
   const [isFormValid, setIsFormValid] = useState(false)
@@ -21,7 +20,7 @@ const ContactForm = () => {
     )
     setIsFormValid(isValid)
   }, [formData])
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prevData) => ({
       ...prevData,
@@ -29,13 +28,15 @@ const ContactForm = () => {
     }))
   }
   const reset = () => {
-    formData.firstname = ''
-    formData.lastname = ''
-    formData.email = ''
-    formData.phnumber = ''
-    formData.Message = ''
+    setFormData({
+      firstname: '',
+      lastname: '',
+      email: '',
+      phnumber: '',
+      Message: '',
+    })
   }
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoader(true)
 
@@ -53,7 +54,6 @@ const ContactForm = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data.success) {
-          setSubmitted(true)
           setShowThanks(true)
           reset()
 
@@ -61,8 +61,7 @@ const ContactForm = () => {
             setShowThanks(false)
           }, 5000)
         }
-
-        reset()
+        setLoader(false)
       })
       .catch((error) => {
         setLoader(false)
@@ -80,10 +79,10 @@ const ContactForm = () => {
               </span>
             </div>
             <h2 className='mb-4 font-bold tracking-tight'>
-              Let's <span className='text-gradient-primary'>Connect</span>
+              Let&apos;s <span className='text-gradient-primary'>Connect</span>
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Have questions about our courses or platform? We're here to help you start your robotics journey.
+              Have questions about our courses or platform? We&apos;re here to help you start your robotics journey.
             </p>
           </div>
 
@@ -198,7 +197,7 @@ const ContactForm = () => {
                   </svg>
                 </div>
                 <p className='text-gray-900 font-semibold'>
-                  Thank you for contacting us! We'll get back to you soon.
+                  Thank you for contacting us! We&apos;ll get back to you soon.
                 </p>
               </div>
             )}

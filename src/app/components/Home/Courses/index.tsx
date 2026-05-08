@@ -93,7 +93,7 @@ const Courses = () => {
                           <div>
                             <h4 className="font-bold text-gray-900 mb-2 flex items-center gap-2">
                               <Icon icon="solar:clipboard-list-bold-duotone" className="text-primary" />
-                              What you'll learn:
+                              What you&apos;ll learn:
                             </h4>
                             <ul className="grid grid-cols-1 gap-2">
                               {course.curriculum?.map((item, i) => (
