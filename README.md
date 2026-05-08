@@ -12,7 +12,7 @@ Next.js 15 website for Roboautomators - a robotics education platform.
 - **Auth**: NextAuth.js
 - **UI Components**: Headless UI, React Slick
 
-## Project Structure
+## Project Structures
 
 ```
 src/app/
