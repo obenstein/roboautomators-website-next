@@ -34,7 +34,7 @@ export default function ScrollToTop() {
   }, [])
 
   return (
-    <div className='fixed bottom-8 right-8 z-[999]'>
+    <div className='fixed bottom-8 right-8 z-[999] hidden sm:block'>
       <div className='flex items-center gap-2.5'>
         <AnimatePresence>
           {isVisible && (

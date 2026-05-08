@@ -9,11 +9,11 @@ import SignUp from '@/app/components/Auth/SignUp'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { HeaderItem } from '@/app/types/menu'
 import Link from 'next/link'
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Header: React.FC = () => {
   const [headerData, setHeaderData] = useState<HeaderItem[]>([])
-  const [activeSection, setActiveSection] = useState<string>('')
+  const [activeSection, setActiveSection] = useState<string>('Home')
 
   const [navbarOpen, setNavbarOpen] = useState(false)
   const [sticky, setSticky] = useState(false)
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         })
       },
       {
-        rootMargin: '-50% 0px -50% 0px',
+        rootMargin: '-40% 0px -40% 0px',
         threshold: 0,
       }
     )
@@ -69,6 +69,9 @@ const Header: React.FC = () => {
 
   const handleScroll = () => {
     setSticky(window.scrollY >= 10)
+    if (window.scrollY < 20) {
+      setActiveSection('Home')
+    }
   }
 
   const handleClickOutside = (event: MouseEvent) => {
@@ -194,37 +197,38 @@ const Header: React.FC = () => {
             </button>
           </div>
         </div>
-        {navbarOpen && (
-          <div className='fixed top-0 left-0 w-full h-full bg-black/50 z-40' />
-        )}
+        <AnimatePresence>
+          {navbarOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setNavbarOpen(false)}
+              className='fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-sm z-40 cursor-pointer'
+            />
+          )}
+        </AnimatePresence>
         <div
           ref={mobileMenuRef}
-          className={`lg:hidden fixed top-0 right-0 h-full w-full bg-white/95 backdrop-blur-md shadow-2xl transform transition-all duration-500 ease-in-out max-w-xs ${
+          className={`lg:hidden fixed top-0 right-0  w-[300px] bg-white shadow-2xl transform transition-transform duration-500 ease-in-out h-[100vh] ${
             navbarOpen ? 'translate-x-0' : 'translate-x-full'
-          } z-50`}>
-          <div className='flex items-center justify-between p-4'>
-            <h2 className='text-lg font-bold text-midnight_text'>
-              <Logo />
-            </h2>
-            {/*  */}
+          } z-50 flex flex-col`}>
+          <div className='flex items-center justify-between p-6 border-b border-gray-50'>
+            <Logo />
             <button
               onClick={() => setNavbarOpen(false)}
-              className='bg-black/30 rounded-full p-1 text-white'
-              aria-label='Close menu Modal'>
-              <Icon
-                icon={'material-symbols:close-rounded'}
-                width={24}
-                height={24}
-              />
+              className='p-2 rounded-xl bg-gray-50 text-gray-500 hover:text-black transition-colors'
+              aria-label='Close menu'>
+              <Icon icon='solar:close-circle-bold' width={24} height={24} />
             </button>
           </div>
-          <nav className='flex flex-col items-start p-4'>
+          <nav className='flex-1 overflow-y-auto p-6 flex flex-col gap-2 h-full'>
             {headerData.map((item, index) => (
-              <MobileHeaderLink key={index} item={item} />
+              <MobileHeaderLink key={index} item={item} activeSection={activeSection} />
             ))}
             <div className='mt-8 flex flex-col gap-4 w-full'>
               <Link href="/registration" onClick={() => setNavbarOpen(false)}>
-                <button className='w-full bg-primary text-white px-6 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-all'>
+                <button className='w-full bg-primary text-black px-6 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-primary/20 active:scale-95 transition-all'>
                   <Icon icon="solar:pen-new-square-bold-duotone" className="text-2xl" />
                   Register Now
                 </button>

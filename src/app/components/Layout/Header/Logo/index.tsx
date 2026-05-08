@@ -5,10 +5,10 @@ const Logo: React.FC = () => {
   return (
     <Link href="/" className="block ">
       <Image
-        src="/images/logo/logo.svg"
+        src="/images/logo/logo3.png"
         alt="RoboAutomators Logo"
-        width={150}
-        height={150}
+        width={200}
+        height={200}
         className="object-contain"
         quality={100}
         priority

@@ -8,15 +8,12 @@ import Companies from "@/app/components/Home/Companies";
 import Mentor from "@/app/components/Home/Mentor";
 import Testimonial from "@/app/components/Home/Testimonial";
 import Newsletter from "@/app/components/Home/Newsletter";
-import { Metadata } from "next";
+
 import ContactForm from "./components/Contact/Form";
 import PartnerCompanies from "./components/Home/Partners";
 import Highlights from "./components/Home/Highlights";
 
-export const metadata: Metadata = {
-  title: "Roboautomators - Empowering Future Builders",
-  description: "Hands-on robotics, AI, and coding education for students through engaging projects and real-world applications.",
-};
+
 
 export default function Home() {
   return (

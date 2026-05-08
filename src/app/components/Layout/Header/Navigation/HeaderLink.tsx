@@ -6,9 +6,10 @@ import { usePathname } from 'next/navigation'
 
 const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string;sticky:boolean }> = ({ item,activeSection,sticky }) => {
   const [submenuOpen, setSubmenuOpen] = useState(false)
-  const isActive = item.href === `/#${activeSection}`
-
-  const path = usePathname()
+  const pathname = usePathname()
+  const isActive = item.href.startsWith('/#')
+    ? pathname === '/' && activeSection === item.href.replace('/#', '')
+    : pathname === item.href
   const handleMouseEnter = () => {
     if (item.submenu) {
       setSubmenuOpen(true)
@@ -51,7 +52,9 @@ const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string;sticky:boole
      {submenuOpen && item.submenu && (
         <div className='absolute py-2 left-0 mt-0.5 w-60 bg-white shadow-lg rounded-lg'>
           {item.submenu.map((subItem, index) => {
-            const subIsActive = subItem.href === `/#${activeSection}`
+            const subIsActive = subItem.href.startsWith('/#')
+              ? pathname === '/' && activeSection === subItem.href.replace('/#', '')
+              : pathname === subItem.href
             
             return (
               <Link

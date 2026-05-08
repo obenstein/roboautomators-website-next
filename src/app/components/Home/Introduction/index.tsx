@@ -59,35 +59,44 @@ const Introduction = () => {
             transition={{ duration: 0.8 }}
             className="flex-1 w-full"
           >
-            <div className="relative group rounded-[2rem] overflow-hidden shadow-2xl">
-              {/* Thumbnail */}
-              <div className="aspect-video relative">
-                <img 
-                  src="/images/Introduction/tv-feature.jpg" 
-                  alt="Featured on National Television"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1000";
-                  }}
+            <div 
+              className="relative group rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer"
+              onClick={() => setIsOpen(true)}
+            >
+              {/* Main Video Container */}
+              <div className="aspect-video relative bg-slate-900 border-4 border-white/20 transform group-hover:scale-[1.01] transition-all duration-500">
+                {/* Background Muted Video for Attention */}
+                <video
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 lg:group-hover:scale-105 transform transition-transform duration-700"
+                  src="https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw7xIkuj0I9VQwzJvbSW6XUeMlhTtipjkRHNox"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 />
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
+
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
                 
-                {/* Play Button */}
-                <motion.button 
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
-                  onClick={() => setIsOpen(true)}
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-xl z-10"
-                >
-                  <Icon icon="solar:play-bold" className="text-3xl text-primary ml-1" />
-                </motion.button>
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div 
+                    whileHover={{ scale: 1.15 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-xl z-10"
+                  >
+                    <Icon icon="solar:play-bold" className="text-4xl text-white ml-1" />
+                  </motion.div>
+                </div>
 
                 {/* Caption Badge */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
-                    <h4 className="text-white font-bold mb-1">Featured on National Television</h4>
-                    <p className="text-white/80 text-sm">Our students showcasing robotics projects on ARY Good Morning Pakistan.</p>
+                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                      <span className="text-white/90 text-[10px] font-bold tracking-widest uppercase">Featured on National TV</span>
+                    </div>
+                    <h4 className="text-white font-bold text-lg">Watch our Journey on ARY News</h4>
+                    <p className="text-white/80 text-sm">Showcasing innovation and STEM excellence on Good Morning Pakistan.</p>
                   </div>
                 </div>
               </div>
