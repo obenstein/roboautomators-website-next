@@ -64,14 +64,6 @@
 }
 
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -81,21 +73,42 @@
     border-color: var(--color-gray-200, currentColor);
   }
 
-  * {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 150ms;
-  }
-  
+  /* FIX #1 (CRITICAL): Global * transition REMOVED.
+     Applying colour/background transitions to every DOM node forces WebKit to
+     track changes across thousands of elements simultaneously, causing GPU
+     memory spikes and tab crashes on iOS/Safari. Transitions are now scoped
+     to interactive elements only (see below). */
+
   body {
     font-family: var(--font-inter);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    /* FIX #2: overflow-x:clip instead of hidden — hidden creates a new
+       scroll container on iOS which can conflict with fixed/sticky elements
+       and cause layout thrashing or crash the renderer. */
+    overflow-x: clip;
+    -webkit-overflow-scrolling: auto;
   }
 
   html {
-    overflow-x: hidden;
+    overflow-x: clip;
+    scroll-padding-top: 80px;
+    /* FIX #3: scroll-behavior:smooth is left as 'auto' here; re-enabled
+       below only for users who have NOT requested reduced motion.
+       On older iOS (14-) smooth scroll + IntersectionObserver can loop. */
+    scroll-behavior: auto;
+  }
+
+  /* Scoped interactive-element transitions replace the removed global rule */
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    transition-property: color, background-color, border-color, opacity, box-shadow, transform;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
   }
 
   section {
@@ -130,146 +143,90 @@
   }
 }
 
+/* Re-enable smooth scroll only when reduced-motion is not preferred */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
 
-/* Custom Keyframe Animations */
+
+/* ─── Keyframe Animations ─────────────────────────────────────────────────── */
+
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
 }
 
 @keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+  0%   { background-position: -1000px 0; }
+  100% { background-position:  1000px 0; }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
 }
 
 @keyframes glow {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(35, 143, 196, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(35, 143, 196, 0.6);
-  }
+  0%, 100% { box-shadow: 0 0 20px rgba(35, 143, 196, 0.3); }
+  50%       { box-shadow: 0 0 40px rgba(35, 143, 196, 0.6); }
 }
 
 @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(-50px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(50px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes scaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @keyframes rotateIn {
-  from {
-    opacity: 0;
-    transform: rotate(-10deg) scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: rotate(0) scale(1);
-  }
+  from { opacity: 0; transform: rotate(-10deg) scale(0.9); }
+  to   { opacity: 1; transform: rotate(0) scale(1); }
 }
 
 @keyframes glowPulse {
-  0%, 100% {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.4);
-  }
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.4); }
+  50%       { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.4); }
+}
+
+@keyframes gradientShift {
+  0%   { background-position:   0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
 }
 
 
@@ -279,105 +236,85 @@
   }
   
   .bg-banner-image {
-    /* background-image: var(--background-image-banner-image); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
   }
 
   /* Animation Utilities */
-  .animate-fadeIn {
-    animation: fadeIn 0.6s ease-out;
-  }
+  .animate-fadeIn       { animation: fadeIn       0.6s ease-out; }
+  .animate-slideUp      { animation: slideUp      0.6s ease-out; }
+  .animate-slideDown    { animation: slideDown    0.6s ease-out; }
+  .animate-slideInLeft  { animation: slideInLeft  0.6s var(--ease-premium); }
+  .animate-slideInRight { animation: slideInRight 0.6s var(--ease-premium); }
+  .animate-scaleIn      { animation: scaleIn      0.5s ease-out; }
+  .animate-scaleUp      { animation: scaleUp      0.6s var(--ease-premium); }
+  .animate-rotateIn     { animation: rotateIn     0.7s var(--ease-premium); }
+  .animate-bounce       { animation: bounce       2s  ease-in-out infinite; }
+  .animate-float        { animation: float        3s  ease-in-out infinite; }
+  .animate-shimmer      { animation: shimmer      2s  linear infinite; }
+  .animate-pulse        { animation: pulse        2s  cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  .animate-glow         { animation: glow         2s  ease-in-out infinite; }
+  .animate-glowPulse    { animation: glowPulse    3s  ease-in-out infinite; }
 
-  .animate-slideUp {
-    animation: slideUp 0.6s ease-out;
-  }
-
-  .animate-slideDown {
-    animation: slideDown 0.6s ease-out;
-  }
-  
-  .animate-slideInLeft {
-    animation: slideInLeft 0.6s var(--ease-premium);
-  }
-  
-  .animate-slideInRight {
-    animation: slideInRight 0.6s var(--ease-premium);
-  }
-
-  .animate-scaleIn {
-    animation: scaleIn 0.5s ease-out;
-  }
-  
-  .animate-scaleUp {
-    animation: scaleUp 0.6s var(--ease-premium);
-  }
-  
-  .animate-rotateIn {
-    animation: rotateIn 0.7s var(--ease-premium);
-  }
-
-  .animate-bounce {
-    animation: bounce 2s ease-in-out infinite;
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-shimmer {
-    animation: shimmer 2s linear infinite;
-  }
-
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .animate-glow {
-    animation: glow 2s ease-in-out infinite;
-  }
-  
-  .animate-glowPulse {
-    animation: glowPulse 3s ease-in-out infinite;
-  }
-
-  /* Glassmorphism - Premium Variants */
+  /* ─── Glassmorphism — GPU-accelerated, iOS-safe ─────────────────────────
+   *
+   * FIX #4 (CRITICAL): All glass classes now include:
+   *   • transform: translateZ(0)  — promotes element to its own GPU layer,
+   *     preventing the compositing stall that crashes WebKit on iOS when
+   *     multiple backdrop-filter layers are on screen simultaneously.
+   *   • will-change: transform    — pre-allocates the GPU layer before
+   *     scroll / animations begin, avoiding mid-scroll reallocation crashes.
+   *   • Reduced blur radii (8–12 px instead of 10–20 px) — large blur values
+   *     are the primary cause of GPU VRAM exhaustion on iPhone GPUs.
+   *   • -webkit-backdrop-filter kept before backdrop-filter for full
+   *     Safari/WebKit compatibility.
+   * ─────────────────────────────────────────────────────────────────────── */
   .glass {
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.2);
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   .glass-dark {
     background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateZ(0);
+    will-change: transform;
   }
   
   .glass-premium {
     background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    transform: translateZ(0);
+    will-change: transform;
   }
   
   .glass-card {
     background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.5);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    transform: translateZ(0);
+    will-change: transform;
   }
   
   .glass-gradient {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.25);
+    transform: translateZ(0);
+    will-change: transform;
   }
 
   /* Gradient Utilities */
@@ -391,58 +328,34 @@
     animation: gradientShift 15s ease infinite;
   }
   
-  .bg-gradient-premium {
-    background: var(--color-gradient-premium);
-  }
-  
-  .bg-gradient-purple {
-    background: var(--color-gradient-purple);
-  }
-  
-  .bg-gradient-ocean {
-    background: var(--color-gradient-ocean);
-  }
+  .bg-gradient-premium { background: var(--color-gradient-premium); }
+  .bg-gradient-purple  { background: var(--color-gradient-purple); }
+  .bg-gradient-ocean   { background: var(--color-gradient-ocean); }
 
-  /* Hover Effects - Premium */
+  /* Hover Effects */
   .hover-lift {
     transition: transform 0.3s var(--ease-premium), box-shadow 0.3s var(--ease-premium);
+    will-change: transform;
   }
-
-  .hover-lift:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-card-hover);
-  }
-  
-  .hover-lift-sm:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-premium);
-  }
-
-  .hover-glow:hover {
-    box-shadow: var(--shadow-glow);
-  }
+  .hover-lift:hover    { transform: translateY(-8px); box-shadow: var(--shadow-card-hover); }
+  .hover-lift-sm:hover { transform: translateY(-4px); box-shadow: var(--shadow-premium); }
+  .hover-glow:hover    { box-shadow: var(--shadow-glow); }
 
   .hover-scale {
     transition: transform 0.3s var(--ease-premium);
+    will-change: transform;
   }
-
-  .hover-scale:hover {
-    transform: scale(1.05);
-  }
+  .hover-scale:hover    { transform: scale(1.05); }
+  .hover-scale-sm:hover { transform: scale(1.02); }
+  .hover-rotate:hover   { transform: rotate(2deg) scale(1.05); }
   
-  .hover-scale-sm:hover {
-    transform: scale(1.02);
-  }
-  
-  .hover-rotate:hover {
-    transform: rotate(2deg) scale(1.05);
-  }
-  
-  /* Premium Button Styles */
+  /* Premium Button */
   .btn-premium {
     position: relative;
     overflow: hidden;
     transition: all 0.3s var(--ease-premium);
+    transform: translateZ(0);     /* GPU layer prevents shimmer repaints */
+    will-change: transform;
   }
   
   .btn-premium::before {
@@ -456,9 +369,7 @@
     transition: left 0.5s;
   }
   
-  .btn-premium:hover::before {
-    left: 100%;
-  }
+  .btn-premium:hover::before { left: 100%; }
   
   /* Text Gradients */
   .text-gradient-primary {
@@ -476,27 +387,25 @@
   }
 }
 
+/* ─── iOS-specific fixes ──────────────────────────────────────────────────── */
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 80px;
-}
-
-/* Prevent iOS Safari zoom on input focus */
+/* FIX #5: Prevent iOS Safari zoom on input focus */
 @supports (-webkit-touch-callout: none) {
   input, select, textarea {
     font-size: 16px !important;
+  }
+}
+
+/* FIX #6: Reduce Motion — disable all animations for users (incl. iOS
+   Accessibility > Reduce Motion). Stops animation-heavy pages from
+   freezing on low-memory iPhones. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+    scroll-behavior:          auto   !important;
   }
 }

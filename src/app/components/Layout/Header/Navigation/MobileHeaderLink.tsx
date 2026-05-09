@@ -20,7 +20,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem; activeSection: string }> = 
       <Link
         href={item.href}
         onClick={item.submenu ? handleToggle : undefined}
-        className={`flex items-center justify-between w-full py-2 text-base font-medium transition-colors ${
+        className={`flex items-center justify-between w-full py-2 text-base font-medium transition-base ${
           isActive ? 'text-primary font-bold' : 'text-black'
         } focus:outline-hidden`}>
         {item.label}
@@ -52,7 +52,7 @@ const MobileHeaderLink: React.FC<{ item: HeaderItem; activeSection: string }> = 
               <Link
                 key={index}
                 href={subItem.href}
-                className={`block py-2 text-sm transition-colors ${
+                className={`block py-2 text-sm transition-base ${
                   subIsActive ? 'text-primary font-bold' : 'text-gray-500 hover:text-black'
                 }`}>
                 {subItem.label}

@@ -13,6 +13,7 @@ const FloatingWhatsApp = () => {
       animate={{ scale: 1, opacity: 1 }}
       transition={{ delay: 1, duration: 0.5, type: 'spring' }}
       className="fixed bottom-6 left-6 z-[9999]"
+      style={{ willChange: 'transform' }}
     >
       <a
         href={whatsappUrl}
@@ -20,11 +21,17 @@ const FloatingWhatsApp = () => {
         rel="noopener noreferrer"
         className="group relative flex items-center justify-center"
       >
-        {/* Pulsing Aura */}
-        <span className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping group-hover:scale-110"></span>
+        {/* FIX: Scoped the ping animation — added contain:strict so the
+            browser doesn't repaint the whole screen on each pulse frame */}
+        <span
+          className="absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75 animate-ping"
+          style={{ contain: 'strict' }}
+        ></span>
         
-        {/* Button */}
-        <div className="relative bg-[#25D366] text-white p-4 rounded-full shadow-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-12 flex items-center gap-3">
+        {/* FIX: Removed group-hover:rotate-12 — rotation + scale together
+            force a matrix transform recalculation on every hover event.
+            Scale alone is sufficient and much cheaper. */}
+        <div className="relative bg-[#25D366] text-white p-4 rounded-full shadow-2xl transition-transform duration-300 group-hover:scale-110 flex items-center gap-3">
           <Icon icon="logos:whatsapp-icon" className="text-3xl brightness-0 invert" />
           <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-bold">
             Chat with us

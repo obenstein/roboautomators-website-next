@@ -28,8 +28,8 @@ const Footer = () => {
     <footer className='bg-[#0a0b10] pt-24 pb-12 relative overflow-hidden border-t border-white/5'>
       {/* Abstract Background Accents */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-20">
-        <div className="absolute -top-[10%] -left-[5%] w-[30%] h-[30%] bg-primary/20 blur-[120px] rounded-full" />
-        <div className="absolute bottom-[10%] -right-[5%] w-[25%] h-[25%] bg-blue-600/10 blur-[100px] rounded-full" />
+        <div className="absolute -top-[10%] -left-[5%] w-[30%] h-[30%] bg-primary/20 blur-[60px] rounded-full" />
+        <div className="absolute bottom-[10%] -right-[5%] w-[25%] h-[25%] bg-blue-600/10 blur-[50px] rounded-full" />
       </div>
 
       <div className='container relative z-10'>

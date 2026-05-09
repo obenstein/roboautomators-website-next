@@ -63,7 +63,7 @@ const Courses = () => {
                     fill
                     className="object-cover transition-transform duration-500 hover:scale-110"
                   />
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-4 py-1 rounded-full shadow-sm">
+                  <div className="absolute top-4 right-4 bg-white/90 px-4 py-1 rounded-full shadow-sm">
                     <span className="text-xs font-bold text-primary uppercase tracking-widest">{course.category}</span>
                   </div>
                 </div>

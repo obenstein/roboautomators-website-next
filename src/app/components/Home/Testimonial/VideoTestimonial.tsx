@@ -34,7 +34,7 @@ const VideoTestimonial = () => {
               <motion.div
                 whileHover={{ scale: 1.15 }}
                 whileTap={{ scale: 0.9 }}
-                className='w-24 h-24 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center border-2 border-white/50 shadow-glow group-hover:shadow-glow-lg transition-all'
+                className='w-24 h-24 rounded-full bg-white/30 flex items-center justify-center border-2 border-white/50 shadow-glow group-hover:shadow-glow-lg transition-all'
               >
                 <Icon icon='solar:play-bold' className='text-white text-5xl ml-2' />
               </motion.div>
@@ -88,7 +88,7 @@ const VideoTestimonial = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className='fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 backdrop-blur-xl p-4 sm:p-8'
+            className='fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/98 p-4 sm:p-8'
             onClick={() => setIsOpen(false)}
           >
             <motion.div

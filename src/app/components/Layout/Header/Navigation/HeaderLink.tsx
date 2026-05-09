@@ -26,7 +26,7 @@ const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string;sticky:boole
       onMouseLeave={handleMouseLeave}>
       <Link
         href={item.href}
-        className={`text-base flex font-medium hover:text-primary capitalized  ${
+        className={`text-base flex font-medium hover:text-primary capitalized transition-base ${
           isActive ? 'text-primary ' : !sticky? 'text-white': 'text-black'
         }`}>
         {item.label}
@@ -60,7 +60,7 @@ const HeaderLink: React.FC<{ item: HeaderItem;activeSection: string;sticky:boole
               <Link
                 key={index}
                 href={subItem.href}
-                className={`block px-4 py-2 ${
+                className={`block px-4 py-2 transition-base ${
                   subIsActive ? 'bg-primary text-white' : 'text-black hover:bg-primary'
                 }`}>
                 {subItem.label}

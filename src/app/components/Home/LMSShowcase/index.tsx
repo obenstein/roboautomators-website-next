@@ -43,33 +43,12 @@ const LMSShowcase = () => {
 
   return (
     <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 py-24 overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 opacity-20">
-        <motion.div
-          className="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.5, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 2,
-          }}
-        />
+      {/* FIX: Static decorative elements instead of animated blur blobs.
+           Infinite scale+opacity animations on blur-3xl elements consume
+           constant GPU memory on iOS, causing the tab to eventually crash. */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-500 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500 rounded-full blur-3xl" />
       </div>
 
       <div className="container relative z-10">
@@ -86,7 +65,7 @@ const LMSShowcase = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="inline-block mb-4 px-6 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20"
+            className="inline-block mb-4 px-6 py-2 bg-white/10 rounded-full border border-white/20"
           >
             <span className="text-white/90 font-semibold text-sm tracking-wide">
               🌍 GLOBAL LMS PLATFORM

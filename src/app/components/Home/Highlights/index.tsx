@@ -198,7 +198,7 @@ const Highlights = () => {
                   
                   {/* Glass Overlay */}
                   <div className='absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors duration-500 flex items-center justify-center'>
-                    <div className='w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300'>
+                    <div className='w-16 h-16 rounded-full bg-white/20 border border-white/30 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300'>
                       <Icon icon='solar:play-bold' className='text-white text-2xl ml-1' />
                     </div>
                   </div>
@@ -223,7 +223,7 @@ const Highlights = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className='fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 backdrop-blur-xl p-4 sm:p-20'
+              className='fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/98 p-4 sm:p-20'
               onClick={() => setSelectedVideo(null)}>
               <motion.div
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}

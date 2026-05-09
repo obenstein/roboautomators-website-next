@@ -6,8 +6,11 @@ const Newsletter = () => {
   return (
     <section id='join-section' className='py-20 relative overflow-hidden'>
       {/* Background Decorative Blur */}
-      <div className='absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] -z-10' />
-      <div className='absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px] -z-10' />
+      {/* FIX: Reduced blur radius from 120px→60px and added contain:strict.
+           120px CSS blur forces Safari to sample a massive area of pixels;
+           on iPhone this exhausts the GPU tile cache and causes a crash. */}
+      <div className='absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[60px] -z-10 pointer-events-none' style={{ contain: 'strict' }} />
+      <div className='absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[60px] -z-10 pointer-events-none' style={{ contain: 'strict' }} />
 
       <div className='container'>
         <motion.div
@@ -32,7 +35,7 @@ const Newsletter = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className='inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-6'
+                className='inline-flex items-center gap-2 px-4 py-2 bg-white/10 rounded-full border border-white/20 mb-6'
               >
                 <Icon icon='solar:letter-bold-duotone' className='text-primary text-xl' />
                 <span className='text-white/90 text-xs font-bold tracking-widest uppercase'>Exclusive Updates</span>
@@ -62,7 +65,7 @@ const Newsletter = () => {
                   <input
                     type='email'
                     placeholder='Enter your email address'
-                    className='w-full py-5 pl-12 pr-6 bg-white/10 backdrop-blur-md border border-white/10 rounded-2xl text-white placeholder:text-white/40 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all'
+                    className='w-full py-5 pl-12 pr-6 bg-white/10 border border-white/10 rounded-2xl text-white placeholder:text-white/40 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/50 transition-all'
                   />
                 </div>
                 <motion.button

@@ -106,26 +106,29 @@ const Header: React.FC = () => {
   }, [handleScroll, handleClickOutside])
 
   useEffect(() => {
+    // FIX: Replace position:fixed body scroll-lock with overflow:hidden.
+    // The position:fixed approach causes a visual jump on iOS (page snaps to
+    // top) and can crash WebKit when combined with active animations or
+    // IntersectionObserver callbacks. overflow:hidden is the iOS-safe pattern.
     if (isSignInOpen || isSignUpOpen || navbarOpen) {
-      const scrollY = window.scrollY
-      document.body.style.position = 'fixed'
-      document.body.style.top = `-${scrollY}px`
-      document.body.style.width = '100%'
-      document.body.style.overflowY = 'scroll'
+      document.body.style.overflow = 'hidden'
+      // Prevent iOS momentum-scroll from continuing underneath the overlay
+      document.documentElement.style.overflow = 'hidden'
     } else {
-      const scrollY = document.body.style.top
-      document.body.style.position = ''
-      document.body.style.top = ''
-      document.body.style.width = ''
-      document.body.style.overflowY = ''
-      window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
     }
   }, [isSignInOpen, isSignUpOpen, navbarOpen])
 
   return (
     <header
-      className={`fixed top-0 z-40 w-full transition-all duration-500 ease-in-out ${
-        sticky ? 'shadow-lg bg-white/95 backdrop-blur-md py-4' : 'shadow-none py-4 bg-black/60 backdrop-blur-sm'
+      style={{ willChange: 'transform', isolation: 'isolate' }}
+      className={`fixed top-0 z-40 w-full transition-all duration-300 ease-in-out ${
+        sticky ? 'shadow-lg bg-white/95 backdrop-blur-sm py-4' : 'shadow-none py-4 bg-black/60 backdrop-blur-sm'
       }`}>
       <div>
         <div className='container mx-auto max-w-7xl px-4 flex items-center justify-between'>
@@ -147,7 +150,7 @@ const Header: React.FC = () => {
               <div className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50'>
                 <div
                   ref={signInRef}
-                  className='relative mx-auto w-full max-w-md overflow-hidden rounded-lg px-8 pt-14 pb-8 text-center bg-dark_grey/90 backdrop-blur-md bg-white'>
+                  className='relative mx-auto w-full max-w-md overflow-hidden rounded-lg px-8 pt-14 pb-8 text-center bg-white shadow-2xl'>
                   <button
                     onClick={() => setIsSignInOpen(false)}
                     className='absolute top-0 right-0 mr-8 mt-8 dark:invert'
@@ -180,7 +183,7 @@ const Header: React.FC = () => {
               <div className='fixed top-0 left-0 w-full h-full bg-black/50 flex items-center justify-center z-50'>
                 <div
                   ref={signUpRef}
-                  className='relative mx-auto bg-white w-full max-w-md overflow-hidden rounded-lg bg-dark_grey/90 backdrop-blur-md px-8 pt-14 pb-8 text-center'>
+                  className='relative mx-auto bg-white w-full max-w-md overflow-hidden rounded-lg shadow-2xl px-8 pt-14 pb-8 text-center'>
                   <button
                     onClick={() => setIsSignUpOpen(false)}
                     className='absolute top-0 right-0 mr-8 mt-8 dark:invert'
@@ -213,7 +216,7 @@ const Header: React.FC = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setNavbarOpen(false)}
-              className='fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-sm z-40 cursor-pointer'
+              className='fixed top-0 left-0 w-full h-full bg-black/60 z-40 cursor-pointer'
             />
           )}
         </AnimatePresence>
