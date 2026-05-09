@@ -1,4 +1,4 @@
-# HEHE Roboautomators Website
+# HEHE x2 Roboautomators Website
 
 Next.js 15 website for Roboautomators - a robotics education platform.
 
