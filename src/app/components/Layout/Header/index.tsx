@@ -132,7 +132,9 @@ const Header: React.FC = () => {
       }`}>
       <div>
         <div className='container mx-auto max-w-7xl px-4 flex items-center justify-between'>
-          <Logo />
+          <div className="hidden lg:block">
+            <Logo />
+          </div>
         <nav className='hidden lg:flex grow items-center gap-8 justify-start ml-14'>
             {headerData.map((item, index) => (
               <HeaderLink key={index} item={item} activeSection={activeSection} sticky={sticky}/>
@@ -226,7 +228,9 @@ const Header: React.FC = () => {
             navbarOpen ? 'translate-x-0' : 'translate-x-full'
           } z-50 flex flex-col`}>
           <div className='flex items-center justify-between p-6 border-b border-gray-50'>
-            <Logo />
+            <div className="hidden lg:block">
+              <Logo />
+            </div>
             <button
               onClick={() => setNavbarOpen(false)}
               className='p-2 rounded-xl bg-gray-50 text-gray-500 hover:text-black transition-colors'
