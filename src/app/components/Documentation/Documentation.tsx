@@ -1,6 +1,6 @@
 import { Configuration } from './Configuration'
 import { DocNavigation } from './DocNavigation'
-import { Introduction } from './Introduction'
+import Introduction from './Introduction'
 import { PackageStructure } from './PackageStructure'
 import { QuickStart } from './QuickStart'
 
