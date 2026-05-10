@@ -238,9 +238,9 @@ const FooterLinkData: FooterLinkType[] = [
   {
     section: 'Contact Us',
     links: [
-      { label: 'WA: +92 307 3744526', href: 'https://wa.me/923073744526' },
-      { label: 'Email: info@roboautomators.com', href: 'mailto:info@roboautomators.com' },
-      { label: 'Location: Karachi, Pakistan', href: '/#about-us' },
+      { label: '+92 307 3744526', href: 'https://wa.me/923073744526' },
+      { label: 'Email: roboautomators@gmail.com', href: 'mailto:roboautomators@gmail.com' },
+      { label: 'Location: Office # 11 Mezzanine floor, Crown Heights, Block 4, Gulshan-e-Iqbal, Karachi', href: '/#about-us' },
     ],
   },
 ]

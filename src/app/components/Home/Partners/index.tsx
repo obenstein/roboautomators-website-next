@@ -69,7 +69,7 @@ const PartnerCompanies = () => {
                       src={partner.logo}
                       alt={partner.name}
                       fill
-                      className='object-contain grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500'
+                      className='object-contain group-hover:scale-105 transition-all duration-500'
                     />
                   </div>
                   <h4 className='text-xl font-bold text-gray-900 mb-3'>{partner.name}</h4>

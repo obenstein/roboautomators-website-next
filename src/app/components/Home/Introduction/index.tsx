@@ -23,10 +23,10 @@ const Introduction = () => {
               Hands-On Robotics Education for the <span className="text-primary">Next Generation</span>
             </h2>
             <p className="text-lg text-gray-600 leading-relaxed mb-6">
-              Founded in **November 2021**, RoboAutomators has quickly become a leader in STEM education in Pakistan. We provide hands-on robotics, AI, and coding education for students aged 8-18 through engaging projects and real-world applications.
-            </p>
+              Founded in November 2022, RoboAutomators has quickly become a leader in STEM education in Pakistan. We provide hands-on robotics, AI, and coding education for students aged 8-18 through engaging projects and real-world applications.
+            </p>  
             <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              From organizing massive competitions like **Technotious (2024)** and managing robotics at **TeknoFest (2024 & 2026)**, to hosting immersive summer and winter camps, our mission is to prepare students for the fourth industrial revolution through interactive, joy-filled learning.
+              From organizing massive competitions like Technotious (2026) and managing robotics at TeknoFest (2024 & 2025), to hosting immersive summer and winter camps, our mission is to prepare students for the fourth industrial revolution through interactive, joy-filled learning.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

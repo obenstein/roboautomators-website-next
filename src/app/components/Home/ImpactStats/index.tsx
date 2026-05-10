@@ -6,14 +6,14 @@ const ImpactStats = () => {
   const stats = [
     {
       label: 'Students Trained',
-      value: '30,000+',
+      value: '6,500+',
       icon: 'solar:users-group-rounded-bold-duotone',
       color: 'text-blue-600',
       bgColor: 'bg-blue-50',
     },
     {
       label: 'Projects Completed',
-      value: '1,000+',
+      value: '700+',
       icon: 'solar:cup-first-bold-duotone',
       color: 'text-purple-600',
       bgColor: 'bg-purple-50',

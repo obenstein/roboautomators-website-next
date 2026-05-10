@@ -28,8 +28,8 @@ export default function Home() {
       {/* <Mentor />    */}
       <Companies />
       <Testimonial />
-      <ContactForm />
-      <Newsletter />
+      {/* <ContactForm /> */}
+      {/* <Newsletter /> */}
     </main>
   );
 }

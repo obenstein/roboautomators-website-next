@@ -27,22 +27,35 @@ const GeneralProgramForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    const message = `Hello Roboautomators! I want to register my child for the Robotics Program.
-*Student Name:* ${formData.studentName}
-*Parent Name:* ${formData.parentName}
-*Age:* ${formData.age}
-*Grade:* ${formData.grade}
-*School:* ${formData.schoolName}
-*WhatsApp:* ${formData.phone}
-*Address:* ${formData.address}
-*Join MindMath?:* ${formData.mindMath}
-*Heard From:* ${formData.source}`
-    
-    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, '_blank')
-    
-    setLoader(false)
-    setShowSuccess(true)
+    try {
+      fetch('https://script.google.com/macros/s/AKfycbzbrxfg7Qu_MQn7TcnfPgB9j5d-cIUiLMCIsvp5mJMBZ9ZoMzTyEpVML81GB61ZQMf6/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify({
+          ...formData,
+          program: 'Robotics Program'
+        }),
+      });
+
+      setLoader(false)
+      setShowSuccess(true)
+      
+      setFormData({
+        studentName: '',
+        parentName: '',
+        age: '',
+        grade: '',
+        address: '',
+        phone: '',
+        schoolName: '',
+        mindMath: 'No',
+        source: 'Social Media',
+      });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setLoader(false);
+      alert('There was an error submitting your registration. Please try again later.');
+    }
   }
 
   return (
@@ -186,8 +199,8 @@ const GeneralProgramForm = () => {
             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
           ) : (
             <>
-              <Icon icon="logos:whatsapp-icon" className="text-2xl" />
-              Complete Registration via WhatsApp
+              <Icon icon="solar:check-read-bold" className="text-2xl" />
+              Complete Registration
             </>
           )}
         </button>
@@ -206,7 +219,7 @@ const GeneralProgramForm = () => {
           <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 text-white">
             <Icon icon="solar:check-circle-bold" className="text-2xl" />
           </div>
-          <p className="text-green-800 font-bold">Request received! Redirecting to WhatsApp...</p>
+          <p className="text-green-800 font-bold">Registration successful! A mentor will contact you shortly.</p>
         </motion.div>
       )}
     </div>

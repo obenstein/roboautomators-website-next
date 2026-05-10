@@ -27,23 +27,36 @@ const RegistrationForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    // Build WhatsApp URL immediately
-    const message = `Hello Roboautomators! I want to register my child for a program.
-*Parent Name:* ${formData.parentName}
-*Student Name:* ${formData.studentName}
-*Age:* ${formData.age}
-*School/Grade:* ${formData.school}
-*City:* ${formData.city}
-*Program:* ${formData.program}
-*Interested Course:* ${formData.course}`
-    
-    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-    
-    // Open immediately within user gesture to avoid iOS popup blocker
-    window.open(whatsappUrl, '_blank')
-    
-    setLoader(false)
-    setShowSuccess(true)
+    try {
+      // Use no-cors to bypass browser security blocks for Google Scripts
+      // This is a "fire and forget" request that Google will receive perfectly
+      fetch('https://script.google.com/macros/s/AKfycbzbrxfg7Qu_MQn7TcnfPgB9j5d-cIUiLMCIsvp5mJMBZ9ZoMzTyEpVML81GB61ZQMf6/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(formData),
+      });
+
+      // We proceed immediately to success state as no-cors responses are opaque
+      setLoader(false)
+      setShowSuccess(true)
+      
+      // Reset form after success
+      setFormData({
+        parentName: '',
+        studentName: '',
+        email: '',
+        phone: '',
+        program: 'Online Courses',
+        course: 'Basic Robotics',
+        age: '',
+        school: '',
+        city: '',
+      });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setLoader(false);
+      alert('There was an error submitting your registration. Please try again later.');
+    }
   }
 
   return (
@@ -190,8 +203,8 @@ const RegistrationForm = () => {
             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
           ) : (
             <>
-              <Icon icon="logos:whatsapp-icon" className="text-2xl" />
-              Register via WhatsApp
+              <Icon icon="solar:check-read-bold" className="text-2xl" />
+              Submit Registration
             </>
           )}
         </button>
@@ -210,7 +223,7 @@ const RegistrationForm = () => {
           <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 text-white">
             <Icon icon="solar:check-circle-bold" className="text-2xl" />
           </div>
-          <p className="text-green-800 font-bold">Request received! Redirecting to WhatsApp...</p>
+          <p className="text-green-800 font-bold">Registration successful! A mentor will contact you shortly.</p>
         </motion.div>
       )}
     </div>

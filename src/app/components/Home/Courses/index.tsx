@@ -72,9 +72,7 @@ const Courses = () => {
                 <div className="p-8 flex flex-col flex-grow">
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-2xl font-bold text-gray-900">{course.course}</h3>
-                    <div className="bg-blue-50 text-blue-600 px-3 py-1 rounded-lg font-bold text-sm">
-                      PKR {course.price}
-                    </div>
+                    
                   </div>
 
                   <p className="text-gray-600 mb-6 line-clamp-2">

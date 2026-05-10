@@ -72,11 +72,11 @@ const Highlights = () => {
           description: 'Featured on national television',
         },
         {
-          name: 'TeknoFest Coverage',
+          name: 'Pakistan Today',
           description: 'Extensive media coverage of our robotics competitions',
         },
         {
-          name: 'RoboAutomators Media',
+          name: 'Discover Pakistan',
           description: 'Regular media features and press coverage',
         },
       ],
@@ -89,15 +89,15 @@ const Highlights = () => {
       items: [
         {
           name: 'TeknoFest Winners',
-          description: 'Our students secured top positions at TeknoFest competitions',
+          description: 'RoboAutomators students secured top positions at TeknoFest competitions',
         },
         {
           name: 'Robofest Champions',
           description: 'Winners at Robofest at Salim Habib University',
         },
         {
-          name: 'Innovative Projects',
-          description: 'Dozens of innovative projects including smart city models and automation projects',
+          name: 'Technotious 2026',
+          description: 'RoboAutomators students secured top positions at Technotious 2026 organized by AKESP',
         },
       ],
     },

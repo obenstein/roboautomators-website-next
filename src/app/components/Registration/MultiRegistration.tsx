@@ -12,7 +12,7 @@ const MultiRegistration = () => {
   const forms = [
     {
       id: 'general',
-      title: 'Robotics & AI Program',
+      title: 'Online Robotics Course',
       description: 'Online & After-School courses for young innovators.',
       details: [
         'Interactive live/recorded sessions',
@@ -94,8 +94,8 @@ const MultiRegistration = () => {
 
                 <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
                   <div>
-                    <span className="block text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1">Starting from</span>
-                    <span className="text-lg font-bold text-gray-900">{form.fee}</span>
+                    {/* <span className="block text-[10px] uppercase tracking-wider text-gray-400 font-bold mb-1">Starting from</span> */}
+                    {/* <span className="text-lg font-bold text-gray-900">{form.fee}</span> */}
                   </div>
                   <div className={`w-12 h-12 rounded-full ${form.bgColor} flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors`}>
                     <Icon icon="solar:arrow-right-bold" className="text-xl" />

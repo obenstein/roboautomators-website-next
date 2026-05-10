@@ -25,28 +25,49 @@ const SchoolForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    const message = `Hello Roboautomators! I am interested in a School Partnership.
-*Name:* ${formData.name}
-*Role:* ${formData.role}
-*School:* ${formData.schoolName}
-*Phone:* ${formData.phone}
-*Email:* ${formData.email}
-*Address:* ${formData.address}
-*Has STEM programs?:* ${formData.stemStatus}`
-    
-    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, '_blank')
-    
-    setLoader(false)
-    setShowSuccess(true)
+    try {
+      fetch('https://script.google.com/macros/s/AKfycbzbrxfg7Qu_MQn7TcnfPgB9j5d-cIUiLMCIsvp5mJMBZ9ZoMzTyEpVML81GB61ZQMf6/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify({
+          ...formData,
+          program: 'School Partnership'
+        }),
+      });
+
+      setLoader(false)
+      setShowSuccess(true)
+      
+      setFormData({
+        name: '',
+        role: '',
+        schoolName: '',
+        phone: '',
+        email: '',
+        address: '',
+        stemStatus: 'No',
+      });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setLoader(false);
+      alert('There was an error submitting your registration. Please try again later.');
+    }
   }
 
   return (
     <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-gray-100">
-      <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+      <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
         <Icon icon="solar:buildings-bold-duotone" className="text-orange-600 text-3xl" />
         School Partnership Registration
       </h3>
+      
+      <div className="bg-orange-50/50 p-6 rounded-3xl border border-orange-100/50 mb-8">
+        <p className="text-orange-900/80 leading-relaxed">
+          <span className="font-bold text-orange-700">Interested in bringing Robotics & STEM education to your school?</span>
+          <br />
+          Kindly fill out the registration form below. Our team will contact you shortly to schedule a meeting and discuss the training program, curriculum, and collaboration details in depth.
+        </p>
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -152,14 +173,14 @@ const SchoolForm = () => {
             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
           ) : (
             <>
-              <Icon icon="logos:whatsapp-icon" className="text-2xl" />
-              Register Interest via WhatsApp
+              <Icon icon="solar:check-read-bold" className="text-2xl" />
+              Register Interest
             </>
           )}
         </button>
 
         <p className="text-center text-gray-400 text-sm">
-          Our team will contact you to schedule a meeting and presentation.
+          Our team will contact you shortly to schedule a meeting and presentation.
         </p>
       </form>
 
@@ -172,7 +193,7 @@ const SchoolForm = () => {
           <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 text-white">
             <Icon icon="solar:check-circle-bold" className="text-2xl" />
           </div>
-          <p className="text-green-800 font-bold">Request received! Redirecting to WhatsApp...</p>
+          <p className="text-green-800 font-bold">Registration successful! Our team will contact you shortly.</p>
         </motion.div>
       )}
     </div>

@@ -31,8 +31,8 @@ const FloatingWhatsApp = () => {
         {/* FIX: Removed group-hover:rotate-12 — rotation + scale together
             force a matrix transform recalculation on every hover event.
             Scale alone is sufficient and much cheaper. */}
-        <div className="relative bg-[#25D366] text-white p-4 rounded-full shadow-2xl transition-transform duration-300 group-hover:scale-110 flex items-center gap-3">
-          <Icon icon="logos:whatsapp-icon" className="text-3xl brightness-0 invert" />
+        <div className="relative bg-white text-gray-900 p-4 rounded-full shadow-2xl transition-transform duration-300 group-hover:scale-110 flex items-center gap-3 border border-gray-100">
+          <Icon icon="logos:whatsapp-icon" className="text-3xl" />
           <span className="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-bold">
             Chat with us
           </span>

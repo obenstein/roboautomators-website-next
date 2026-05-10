@@ -56,7 +56,7 @@ const VideoTestimonial = () => {
                     <Icon key={i} icon='solar:star-bold' className='text-yellow-400 text-lg' />
                   ))}
                 </div>
-                <span className='text-white text-xs font-bold tracking-wider'>TRUSTED BY 10k+ STUDENTS</span>
+                <span className='text-white text-xs font-bold tracking-wider'>TRUSTED BY 6k+ STUDENTS</span>
               </div>
             </div>
           </div>

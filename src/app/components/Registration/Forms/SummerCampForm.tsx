@@ -18,9 +18,9 @@ const SummerCampForm = () => {
   const [showSuccess, setShowSuccess] = useState(false)
 
   const batches = [
-    'Batch 1 (June 1st - June 28th)',
-    'Batch 2 (July 1st - July 28th)',
-    'Weekend Only Batch'
+    'Onederland (June 7th - June 27th) (10:00 AM - 11:30 AM)',
+    'Onederland (June 7th - June 27th) (12:00 PM - 01:30 PM)',
+    'Habbitt City (June 9th - July 2nd) (11:00 AM - 12:30 PM)'
   ]
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -32,29 +32,92 @@ const SummerCampForm = () => {
     e.preventDefault()
     setLoader(true)
     
-    const message = `Hello Roboautomators! I want to register for the Summer Camp.
-*Batch:* ${formData.batch}
-*Student Name:* ${formData.studentName}
-*Parent Name:* ${formData.parentName}
-*Age:* ${formData.age}
-*WhatsApp:* ${formData.phone}
-*Email:* ${formData.email}
-*Address:* ${formData.address}
-*Heard From:* ${formData.source}`
-    
-    const whatsappUrl = `https://wa.me/923073744526?text=${encodeURIComponent(message)}`
-    window.open(whatsappUrl, '_blank')
-    
-    setLoader(false)
-    setShowSuccess(true)
+    try {
+      fetch('https://script.google.com/macros/s/AKfycbzbrxfg7Qu_MQn7TcnfPgB9j5d-cIUiLMCIsvp5mJMBZ9ZoMzTyEpVML81GB61ZQMf6/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify({
+          ...formData,
+          program: 'Summer Camp'
+        }),
+      });
+
+      setLoader(false)
+      setShowSuccess(true)
+      
+      setFormData({
+        email: '',
+        studentName: '',
+        age: '',
+        batch: 'Batch 1 (June 1st - June 28th)',
+        parentName: '',
+        phone: '',
+        address: '',
+        source: 'Social Media',
+      });
+    } catch (error) {
+      console.error('Submission error:', error);
+      setLoader(false);
+      alert('There was an error submitting your registration. Please try again later.');
+    }
   }
 
   return (
     <div className="bg-white rounded-[2.5rem] p-8 md:p-12 shadow-2xl border border-gray-100">
-      <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-3">
+      <h3 className="text-2xl font-bold text-gray-900 mb-2 flex items-center gap-3">
         <Icon icon="solar:sun-fog-bold-duotone" className="text-emerald-600 text-3xl" />
         Summer Camp 2026 Registration
       </h3>
+      <p className="text-gray-500 mb-8">Join the most exciting hands-on robotics experience this summer!</p>
+
+      {/* Info Sections */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <div className="bg-emerald-50/50 p-6 rounded-3xl border border-emerald-100/50">
+          <h4 className="font-bold text-emerald-900 mb-4 flex items-center gap-2">
+            <Icon icon="solar:calendar-mark-bold-duotone" className="text-xl" />
+            Venues & Schedule
+          </h4>
+          <ul className="space-y-3 text-sm text-emerald-800/80">
+            <li className="flex flex-col gap-1">
+              <span className="font-bold text-emerald-600">Onederland - LuckyOne Mall:</span>
+              <span>Sat, Sun & Mon (7th June – 27th June 2026)</span>
+            </li>
+            <li className="flex flex-col gap-1">
+              <span className="font-bold text-emerald-600">Habitt City (PECHS):</span>
+              <span>Tue, Wed & Thu (9th June – 2nd July 2026)</span>
+            </li>
+            {/* <li className="flex gap-2 pt-2 border-t border-emerald-200/50">
+              <Icon icon="solar:history-bold" className="text-emerald-600" />
+              7th June – 27th June 2026
+            </li> */}
+          </ul>
+        </div>
+
+        <div className="bg-blue-50/50 p-6 rounded-3xl border border-blue-100/50">
+          <h4 className="font-bold text-blue-900 mb-4 flex items-center gap-2">
+            <Icon icon="solar:star-bold-duotone" className="text-xl" />
+            Camp Highlights
+          </h4>
+          <ul className="space-y-3 text-sm text-blue-800/80">
+            <li className="flex items-center gap-2">
+              <Icon icon="solar:check-circle-bold" className="text-blue-600" />
+              9 Interactive Physical Classes
+            </li>
+            <li className="flex items-center gap-2">
+              <Icon icon="solar:check-circle-bold" className="text-blue-600" />
+              All Training Materials Provided
+            </li>
+            <li className="flex items-center gap-2">
+              <Icon icon="solar:check-circle-bold" className="text-blue-600" />
+              STEM, Programming & Mind Maths Activities
+            </li>
+            <li className="flex items-center gap-2">
+              <Icon icon="solar:check-circle-bold" className="text-blue-600" />
+              Completion Certificate Awarded
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -138,14 +201,14 @@ const SummerCampForm = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
+          <label className="block text-sm font-bold text-gray-700 mb-2">School Name</label>
           <input
-            type="email"
+            type="text"
             name="email"
             required
             value={formData.email}
             onChange={handleChange}
-            placeholder="email@example.com"
+            placeholder="School Name"
             className="w-full px-6 py-4 rounded-2xl border-2 border-gray-100 focus:border-emerald-500 focus:outline-none transition-all"
           />
         </div>
@@ -187,8 +250,8 @@ const SummerCampForm = () => {
             <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin" />
           ) : (
             <>
-              <Icon icon="logos:whatsapp-icon" className="text-2xl" />
-              Secure Camp Spot via WhatsApp
+              <Icon icon="solar:check-read-bold" className="text-2xl" />
+              Secure Camp Spot
             </>
           )}
         </button>
@@ -207,7 +270,7 @@ const SummerCampForm = () => {
           <div className="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 text-white">
             <Icon icon="solar:check-circle-bold" className="text-2xl" />
           </div>
-          <p className="text-green-800 font-bold">Request received! Redirecting to WhatsApp...</p>
+          <p className="text-green-800 font-bold">Registration successful! Our team will contact you shortly.</p>
         </motion.div>
       )}
     </div>
