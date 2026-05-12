@@ -17,17 +17,12 @@ const VideoTestimonial = () => {
           className='relative group cursor-pointer'
           onClick={() => setIsOpen(true)}
         >
-          {/* Main Video Container */}
-          <div className='relative aspect-video rounded-[2rem] overflow-hidden bg-slate-900 shadow-2xl border-4 border-white/20 transform group-hover:scale-[1.02] transition-all duration-500'>
-            {/* Background Muted Video for Attention */}
-            <video
-              className='absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 lg:group-hover:scale-105 transform transition-transform duration-700'
-              src='https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw3qHMqqr7bCXF1dG4BtVMu67eNmT8zaxIOoc3'
-              autoPlay
-              muted
-              loop
-              playsInline
-            />
+          {/* Static thumbnail — no autoPlay background video.
+              This + Introduction was causing 2 simultaneous background videos
+              before the Highlights section even loaded its 3 more.
+              iOS kills the tab when >1-2 video decoders run concurrently. */}
+          <div className='relative aspect-video rounded-[2rem] overflow-hidden bg-slate-900 shadow-2xl border-4 border-white/20 group-hover:scale-[1.02] transition-all duration-500'>
+            <div className='absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900' />
             
             {/* Glass Overlay with Play Button */}
             <div className='absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/5 transition-colors duration-500'>
@@ -61,27 +56,13 @@ const VideoTestimonial = () => {
             </div>
           </div>
 
-          {/* Decorative Animated Elements */}
-          <motion.div
-            animate={{ 
-              scale: [1, 1.2, 1],
-              rotate: [12, 15, 12]
-            }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className='absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-3xl -z-10 blur-2xl'
-          />
-          <motion.div
-            animate={{ 
-              scale: [1, 1.3, 1],
-              rotate: [-12, -15, -12]
-             }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-            className='absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-full -z-10 blur-2xl'
-          />
+          {/* Decorative static elements — no infinite animations on blur elements */}
+          <div className='absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br from-purple-500/30 to-pink-500/30 rounded-3xl -z-10 blur-2xl pointer-events-none' />
+          <div className='absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded-full -z-10 blur-2xl pointer-events-none' />
         </motion.div>
       </div>
 
-      {/* Lightbox Modal */}
+      {/* Lightbox — video element only mounts after user taps */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -95,7 +76,7 @@ const VideoTestimonial = () => {
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className='relative w-full max-w-5xl aspect-video rounded-[2.5rem] overflow-hidden shadow-[0_0_100px_rgba(35,143,196,0.3)]'
+              className='relative w-full max-w-5xl aspect-video rounded-[2.5rem] overflow-hidden shadow-2xl'
               onClick={(e) => e.stopPropagation()}
             >
               <video

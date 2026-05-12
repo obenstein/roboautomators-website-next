@@ -2,14 +2,31 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
+import Image from "next/image";
 
 const Banner = () => {
   return (
     <section
       id="Home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images/banner/HomeBanner.jpg')" }}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
+      {/* Background image via next/image so Next.js can:
+          1. Serve WebP/AVIF instead of a 2.5 MB JPEG
+          2. Apply correct srcSet for the device's actual screen width
+          3. Decode asynchronously off the main thread
+          The raw inline style={{ backgroundImage }} bypassed all of this,
+          forcing iOS to decode a 2245x1587 JPEG (~40 MB uncompressed RGBA)
+          synchronously during page paint — a near-guaranteed crash on older iPhones. */}
+      <Image
+        src="/images/banner/HomeBanner.jpg"
+        alt=""
+        fill
+        priority
+        quality={75}
+        className="object-cover object-center"
+        sizes="100vw"
+      />
+
       {/* 40-60% Dark Overlay for Readability */}
       <div className="absolute inset-0 bg-black/50 z-0" />
 

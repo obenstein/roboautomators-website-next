@@ -186,17 +186,14 @@ const Highlights = () => {
                 className='relative group cursor-pointer'
                 onClick={() => setSelectedVideo(event.videoSrc)}>
                 <div className='relative aspect-video rounded-3xl overflow-hidden bg-slate-900 border-2 border-gray-100 shadow-lg group-hover:shadow-2xl transition-all duration-500'>
-                  {/* Muted Autoplay Preview */}
-                  <video
-                    className='absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700'
-                    src={event.videoSrc}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  />
+                  {/* Static gradient thumbnail replaces autoPlay background video.
+                      Previously, 3 videos here + 1 in Introduction + 1 in
+                      VideoTestimonial = 5 simultaneous decoders on page load.
+                      iOS Safari hard-crashes when >1-2 decoders run at once.
+                      Videos now load only when the user taps to open the lightbox. */}
+                  <div className='absolute inset-0 bg-gradient-to-br from-slate-600 to-slate-900 group-hover:from-slate-500 group-hover:to-slate-800 transition-all duration-500' />
                   
-                  {/* Glass Overlay */}
+                  {/* Play Overlay */}
                   <div className='absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors duration-500 flex items-center justify-center'>
                     <div className='w-16 h-16 rounded-full bg-white/20 border border-white/30 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300'>
                       <Icon icon='solar:play-bold' className='text-white text-2xl ml-1' />

@@ -26,7 +26,7 @@ const Introduction = () => {
               Founded in November 2022, RoboAutomators has quickly become a leader in STEM education in Pakistan. We provide hands-on robotics, AI, and coding education for students aged 8-18 through engaging projects and real-world applications.
             </p>  
             <p className="text-lg text-gray-600 leading-relaxed mb-8">
-              From organizing massive competitions like Technotious (2026) and managing robotics at TeknoFest (2024 & 2025), to hosting immersive summer and winter camps, our mission is to prepare students for the fourth industrial revolution through interactive, joy-filled learning.
+              From organizing massive competitions like Technotious (2026) and managing robotics at TeknoFest (2024 &amp; 2025), to hosting immersive summer and winter camps, our mission is to prepare students for the fourth industrial revolution through interactive, joy-filled learning.
             </p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -51,7 +51,7 @@ const Introduction = () => {
             </div>
           </motion.div>
 
-          {/* Right Card (Video) */}
+          {/* Right Card — static poster thumbnail, video only loads on click */}
           <motion.div 
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -63,17 +63,19 @@ const Introduction = () => {
               className="relative group rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer"
               onClick={() => setIsOpen(true)}
             >
-              {/* Main Video Container */}
-              <div className="aspect-video relative bg-slate-900 border-4 border-white/20 transform group-hover:scale-[1.01] transition-all duration-500">
-                {/* Background Muted Video for Attention */}
-                <video
-                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity duration-500 lg:group-hover:scale-105 transform transition-transform duration-700"
-                  src="https://kxl8iryehy.ufs.sh/f/7QpEUw0I9VQw7xIkuj0I9VQwzJvbSW6XUeMlhTtipjkRHNox"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                />
+              {/* Static thumbnail — NO autoPlay video here.
+                  iOS Safari hard-caps simultaneous video decoders. Even one
+                  background autoPlay video on this section, combined with the
+                  three in Highlights, exceeds the cap and crashes the tab.
+                  The thumbnail gives the same visual effect without the GPU cost. */}
+              <div className="aspect-video relative bg-slate-800 border-4 border-white/20">
+                {/* Dark gradient thumbnail mimicking the video poster */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                  <div className="text-center">
+                    <Icon icon="solar:play-circle-bold" className="text-white/30 text-8xl mb-4" />
+                    <p className="text-white/40 text-sm">Click to watch</p>
+                  </div>
+                </div>
 
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
                 
@@ -82,15 +84,15 @@ const Introduction = () => {
                   <motion.div 
                     whileHover={{ scale: 1.15 }}
                     whileTap={{ scale: 0.9 }}
-                    className="w-20 h-20 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-white/50 shadow-xl z-10"
+                    className="w-20 h-20 bg-white/30 rounded-full flex items-center justify-center border-2 border-white/50 shadow-xl z-10"
                   >
                     <Icon icon="solar:play-bold" className="text-4xl text-white ml-1" />
                   </motion.div>
                 </div>
 
-                {/* Caption Badge */}
+                {/* Caption Badge — backdrop-blur-md removed, solid bg instead */}
                 <div className="absolute bottom-6 left-6 right-6">
-                  <div className="bg-white/10 backdrop-blur-md p-5 rounded-2xl border border-white/20">
+                  <div className="bg-black/60 p-5 rounded-2xl border border-white/20">
                     <div className="flex items-center gap-2 mb-1">
                       <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
                       <span className="text-white/90 text-[10px] font-bold tracking-widest uppercase">Featured on National TV</span>
@@ -106,7 +108,7 @@ const Introduction = () => {
         </div>
       </div>
 
-      {/* Video Modal Placeholder */}
+      {/* Video Modal — video element only mounts AFTER user taps play */}
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4">
           <button 
